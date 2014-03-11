@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://tasks.tamandua.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tasks.tamandua.com.br" xmlns:intf="http://tasks.tamandua.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://tasks.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="taskcambio">
+    <complexType>
+     <sequence>
+      <element name="tipo" type="xsd:string"/>
+      <element name="valor_tamandua" type="xsd:double"/>
+      <element name="valor_real" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskcambioResponse">
+    <complexType>
+     <sequence>
+      <element name="taskcambioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskextrato">
+    <complexType>
+     <sequence>
+      <element name="nroconta" type="xsd:string"/>
+      <element name="data_inicio" type="xsd:string"/>
+      <element name="data_fim" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskextratoResponse">
+    <complexType>
+     <sequence>
+      <element name="taskextratoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdeposito">
+    <complexType>
+     <sequence>
+      <element name="nroconta_beneficiado" type="xsd:string"/>
+      <element name="valor" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdepositoResponse">
+    <complexType>
+     <sequence>
+      <element name="taskdepositoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasksaque">
+    <complexType>
+     <sequence>
+      <element name="nroconta" type="xsd:string"/>
+      <element name="valor" type="xsd:double"/>
+      <element name="senha" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasksaqueResponse">
+    <complexType>
+     <sequence>
+      <element name="tasksaqueReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasksaldo">
+    <complexType>
+     <sequence>
+      <element name="nroconta" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasksaldoResponse">
+    <complexType>
+     <sequence>
+      <element name="tasksaldoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasktransferencia">
+    <complexType>
+     <sequence>
+      <element name="nroconta_concedente" type="xsd:string"/>
+      <element name="nroconta_beneficiado" type="xsd:string"/>
+      <element name="valor" type="xsd:double"/>
+      <element name="senha_concedente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasktransferenciaResponse">
+    <complexType>
+     <sequence>
+      <element name="tasktransferenciaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="taskextratoResponse">
+
+      <wsdl:part element="impl:taskextratoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasktransferenciaResponse">
+
+      <wsdl:part element="impl:tasktransferenciaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskcambioRequest">
+
+      <wsdl:part element="impl:taskcambio" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaqueResponse">
+
+      <wsdl:part element="impl:tasksaqueResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaldoRequest">
+
+      <wsdl:part element="impl:tasksaldo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaldoResponse">
+
+      <wsdl:part element="impl:tasksaldoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskdepositoResponse">
+
+      <wsdl:part element="impl:taskdepositoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskcambioResponse">
+
+      <wsdl:part element="impl:taskcambioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasktransferenciaRequest">
+
+      <wsdl:part element="impl:tasktransferencia" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskextratoRequest">
+
+      <wsdl:part element="impl:taskextrato" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaqueRequest">
+
+      <wsdl:part element="impl:tasksaque" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskdepositoRequest">
+
+      <wsdl:part element="impl:taskdeposito" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TaskCliente">
+
+      <wsdl:operation name="taskcambio">
+
+         <wsdl:input message="impl:taskcambioRequest" name="taskcambioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskcambioResponse" name="taskcambioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskextrato">
+
+         <wsdl:input message="impl:taskextratoRequest" name="taskextratoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskextratoResponse" name="taskextratoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdeposito">
+
+         <wsdl:input message="impl:taskdepositoRequest" name="taskdepositoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskdepositoResponse" name="taskdepositoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasksaque">
+
+         <wsdl:input message="impl:tasksaqueRequest" name="tasksaqueRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:tasksaqueResponse" name="tasksaqueResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasksaldo">
+
+         <wsdl:input message="impl:tasksaldoRequest" name="tasksaldoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:tasksaldoResponse" name="tasksaldoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasktransferencia">
+
+         <wsdl:input message="impl:tasktransferenciaRequest" name="tasktransferenciaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:tasktransferenciaResponse" name="tasktransferenciaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TaskClienteSoapBinding" type="impl:TaskCliente">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="taskcambio">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskcambioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskcambioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskextrato">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskextratoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskextratoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdeposito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskdepositoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskdepositoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasksaque">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tasksaqueRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tasksaqueResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasksaldo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tasksaldoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tasksaldoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasktransferencia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tasktransferenciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tasktransferenciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TaskClienteService">
+
+      <wsdl:port binding="impl:TaskClienteSoapBinding" name="TaskCliente">
+
+         <wsdlsoap:address location="http://localhost:8080/TamanduaWS/services/TaskCliente"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
