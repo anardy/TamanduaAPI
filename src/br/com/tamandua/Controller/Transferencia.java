@@ -7,7 +7,7 @@ import br.com.tamandua.Model.TransferenciaModel;
 public class Transferencia extends Transaction {
 
 	public String trans_transferencia(String nroconta_concedente,
-			String nroconta_beneficiado, Double valor, String senha) {
+			String nroconta_beneficiado, Double valor, String senha, String codigoFunc) {
 		String result = "";
 		Conta conta = new Conta();
 		ContaDAO contadao = new ContaDAO();
@@ -28,7 +28,7 @@ public class Transferencia extends Transaction {
 						transferencia.setCliente_concedente(Integer.parseInt(nroconta_concedente));
 						transferencia.setCliente_beneficiado(Integer.parseInt(nroconta_beneficiado));
 						transferencia.setValor(valor);
-						transferencia.setCodigo_funcionario("321");
+						transferencia.setCodigo_funcionario(codigoFunc);
 						
 						TransferenciaDAO transferenciadao = new TransferenciaDAO();
 						transferenciadao.inserir_transferencia(transferencia);

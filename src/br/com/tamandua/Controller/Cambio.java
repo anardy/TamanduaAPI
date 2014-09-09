@@ -5,8 +5,9 @@ import br.com.tamandua.Model.CambioModel;
 
 public class Cambio extends Transaction {
 
-	public String trans_cambio(String tipo, Double valor_tamandua, Double valor_real) {
-		String result = "";
+	public String trans_cambio(String tipo, Double valor_tamandua, Double valor_real, String codigoFunc) {
+		String mensagem = "";
+		boolean result = false;
 
 		if ((valor_real > 0) && (valor_tamandua > 0)) {
 			CambioModel cambio = new CambioModel();
@@ -15,14 +16,14 @@ public class Cambio extends Transaction {
 			cambio.setTipo(tipo);
 			cambio.setValor_tamandua(valor_tamandua);
 			cambio.setValor_real(valor_real);
-			cambio.setCodigo_funcionario("321");
+			cambio.setCodigo_funcionario(codigoFunc);
 
 			CambioDAO cambiodao = new CambioDAO();
-			cambiodao.inserir_cambio(cambio);
-			result = "Transação de Cambio executada com sucesso";
+			result = cambiodao.inserir_cambio(cambio);
+			mensagem = (result) ? "Transação de Cambio executada com sucesso" : "Houve um erro na execução da transação de Cambio";
 		} else {
-			result = "Valores incorretos";
+			mensagem = "Valores incorretos";
 		}
-		return result;
+		return mensagem;
 	}
 }

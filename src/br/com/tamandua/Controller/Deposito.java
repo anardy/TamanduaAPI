@@ -6,7 +6,7 @@ import br.com.tamandua.Model.DepositoModel;
 
 public class Deposito extends Transaction {
 
-	public String trans_deposito(String nroconta_beneficiado, Double valor) {
+	public String trans_deposito(String nroconta_beneficiado, Double valor, String codigoFunc) {
 		String result = "";
 		Conta conta = new Conta();
 		ContaDAO contadao = new ContaDAO();
@@ -20,7 +20,7 @@ public class Deposito extends Transaction {
 			deposito.setNroconta(Integer.parseInt(nroconta_beneficiado));
 			deposito.setValor(valor);
 			deposito.setTipo("cliente");
-			deposito.setCodigo_funcionario("321");
+			deposito.setCodigo_funcionario(codigoFunc);
 				
 			DepositoDAO depositodao = new DepositoDAO();
 			depositodao.inserir_deposito(deposito);

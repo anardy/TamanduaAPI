@@ -1,12 +1,17 @@
 package br.com.tamandua.Model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class ExtratoModel {
 	private String codigo;
 	private int nroconta;
-	private String data;
+	private Timestamp data;
 	private Double valor;
 	private String codigo_funcionario;
 	private String tipo;
+	private String cliente_beneficiado;
+	private String cliente_concedente;
 
 	public String getCodigo() {
 		return codigo;
@@ -48,11 +53,27 @@ public class ExtratoModel {
 		this.nroconta = nroconta;
 	}
 
-	public String getData() {
+	public Timestamp getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Timestamp data) {
 		this.data = data;
+	}
+	
+	public String getCliente_beneficiado() {
+		return cliente_beneficiado;
+	}
+
+	public void setCliente_beneficiado(String cliente_beneficiado) {
+		this.cliente_beneficiado = cliente_beneficiado;
+	}
+
+	public String getCliente_concedente() {
+		return cliente_concedente;
+	}
+
+	public void setCliente_concedente(String cliente_concedente) {
+		this.cliente_concedente = cliente_concedente;
 	}
 }

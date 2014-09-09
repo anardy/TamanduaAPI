@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -23,43 +23,56 @@
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:service name="TaskCliente" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="taskcambio" qname="ns1:taskcambio" returnQName="ns1:taskcambioReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:tipo" type="xsd:string"/>
-   <ns2:parameter qname="ns1:valor_tamandua" type="xsd:double"/>
-   <ns2:parameter qname="ns1:valor_real" type="xsd:double"/>
+  <ns2:operation name="tasklogin" qname="ns1:tasklogin" returnQName="ns1:taskloginReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:user" type="xsd:string"/>
+   <ns2:parameter qname="ns1:senha" type="xsd:string"/>
   </ns2:operation>
   <ns1:operation name="taskextrato" qname="ns2:taskextrato" returnQName="ns2:taskextratoReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns2:nroconta" type="xsd:string"/>
    <ns1:parameter qname="ns2:data_inicio" type="xsd:string"/>
    <ns1:parameter qname="ns2:data_fim" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="taskdeposito" qname="ns3:taskdeposito" returnQName="ns3:taskdepositoReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns3:nroconta_beneficiado" type="xsd:string"/>
+  <ns1:operation name="tasksaque" qname="ns3:tasksaque" returnQName="ns3:tasksaqueReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:nroconta" type="xsd:string"/>
    <ns1:parameter qname="ns3:valor" type="xsd:double"/>
+   <ns1:parameter qname="ns3:senha" type="xsd:string"/>
+   <ns1:parameter qname="ns3:codigoFunc" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="tasksaque" qname="ns4:tasksaque" returnQName="ns4:tasksaqueReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ns1:operation name="tasksaldo" qname="ns4:tasksaldo" returnQName="ns4:tasksaldoReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <ns1:parameter qname="ns4:nroconta" type="xsd:string"/>
-   <ns1:parameter qname="ns4:valor" type="xsd:double"/>
    <ns1:parameter qname="ns4:senha" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="tasksaldo" qname="ns5:tasksaldo" returnQName="ns5:tasksaldoReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:nroconta" type="xsd:string"/>
-   <ns1:parameter qname="ns5:senha" type="xsd:string"/>
+  <ns1:operation name="taskdeposito" qname="ns5:taskdeposito" returnQName="ns5:taskdepositoReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:nroconta_beneficiado" type="xsd:string"/>
+   <ns1:parameter qname="ns5:valor" type="xsd:double"/>
+   <ns1:parameter qname="ns5:codigoFunc" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="tasktransferencia" qname="ns6:tasktransferencia" returnQName="ns6:tasktransferenciaReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns6:nroconta_concedente" type="xsd:string"/>
-   <ns1:parameter qname="ns6:nroconta_beneficiado" type="xsd:string"/>
-   <ns1:parameter qname="ns6:valor" type="xsd:double"/>
-   <ns1:parameter qname="ns6:senha_concedente" type="xsd:string"/>
+  <ns1:operation name="taskcambio" qname="ns6:taskcambio" returnQName="ns6:taskcambioReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:tipo" type="xsd:string"/>
+   <ns1:parameter qname="ns6:valor_tamandua" type="xsd:double"/>
+   <ns1:parameter qname="ns6:valor_real" type="xsd:double"/>
+   <ns1:parameter qname="ns6:codigoFunc" type="xsd:string"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="tasktransferencia tasksaque taskextrato taskdeposito taskcambio tasksaldo"/>
+  <ns1:operation name="taskdadosFuncionario" qname="ns7:taskdadosFuncionario" returnQName="ns7:taskdadosFuncionarioReturn" returnType="ns8:Funcionario" soapAction="" xmlns:ns7="http://tasks.tamandua.com.br" xmlns:ns8="http://Model.tamandua.com.br">
+   <ns1:parameter qname="ns7:user" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns7:senha" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="tasktransferencia" qname="ns9:tasktransferencia" returnQName="ns9:tasktransferenciaReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://tasks.tamandua.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:nroconta_concedente" type="xsd:string"/>
+   <ns1:parameter qname="ns9:nroconta_beneficiado" type="xsd:string"/>
+   <ns1:parameter qname="ns9:valor" type="xsd:double"/>
+   <ns1:parameter qname="ns9:senha_concedente" type="xsd:string"/>
+   <ns1:parameter qname="ns9:codigoFunc" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="tasktransferencia tasksaque taskextrato taskdeposito tasklogin taskcambio taskdadosFuncionario tasksaldo"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="TaskCliente"/>
   <ns1:parameter name="className" value="br.com.tamandua.tasks.TaskCliente"/>
   <ns1:parameter name="wsdlServicePort" value="TaskCliente"/>
-  <ns1:parameter name="schemaQualified" value="http://tasks.tamandua.com.br"/>
+  <ns1:parameter name="schemaQualified" value="http://Model.tamandua.com.br,http://tasks.tamandua.com.br"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://tasks.tamandua.com.br"/>
   <ns1:parameter name="wsdlServiceElement" value="TaskClienteService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Funcionario" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.tamandua.Model.Funcionario" xmlns:ns10="http://Model.tamandua.com.br"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>

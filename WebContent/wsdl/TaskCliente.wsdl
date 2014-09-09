@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://tasks.tamandua.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tasks.tamandua.com.br" xmlns:intf="http://tasks.tamandua.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://tasks.tamandua.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://tasks.tamandua.com.br" xmlns:intf="http://tasks.tamandua.com.br" xmlns:tns1="http://Model.tamandua.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://tasks.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="taskcambio">
+   <import namespace="http://Model.tamandua.com.br"/>
+   <element name="tasklogin">
     <complexType>
      <sequence>
-      <element name="tipo" type="xsd:string"/>
-      <element name="valor_tamandua" type="xsd:double"/>
-      <element name="valor_real" type="xsd:double"/>
+      <element name="user" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="taskcambioResponse">
+   <element name="taskloginResponse">
     <complexType>
      <sequence>
-      <element name="taskcambioReturn" type="xsd:string"/>
+      <element name="taskloginReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -36,27 +36,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="taskdeposito">
-    <complexType>
-     <sequence>
-      <element name="nroconta_beneficiado" type="xsd:string"/>
-      <element name="valor" type="xsd:double"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="taskdepositoResponse">
-    <complexType>
-     <sequence>
-      <element name="taskdepositoReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="tasksaque">
     <complexType>
      <sequence>
       <element name="nroconta" type="xsd:string"/>
       <element name="valor" type="xsd:double"/>
       <element name="senha" type="xsd:string"/>
+      <element name="codigoFunc" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -82,6 +68,54 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="taskdeposito">
+    <complexType>
+     <sequence>
+      <element name="nroconta_beneficiado" type="xsd:string"/>
+      <element name="valor" type="xsd:double"/>
+      <element name="codigoFunc" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdepositoResponse">
+    <complexType>
+     <sequence>
+      <element name="taskdepositoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskcambio">
+    <complexType>
+     <sequence>
+      <element name="tipo" type="xsd:string"/>
+      <element name="valor_tamandua" type="xsd:double"/>
+      <element name="valor_real" type="xsd:double"/>
+      <element name="codigoFunc" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskcambioResponse">
+    <complexType>
+     <sequence>
+      <element name="taskcambioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdadosFuncionario">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdadosFuncionarioResponse">
+    <complexType>
+     <sequence>
+      <element name="taskdadosFuncionarioReturn" type="tns1:Funcionario"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="tasktransferencia">
     <complexType>
      <sequence>
@@ -89,6 +123,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
       <element name="nroconta_beneficiado" type="xsd:string"/>
       <element name="valor" type="xsd:double"/>
       <element name="senha_concedente" type="xsd:string"/>
+      <element name="codigoFunc" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -100,15 +135,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
   </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://Model.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Funcionario">
+    <sequence>
+     <element name="cpf" nillable="true" type="xsd:string"/>
+     <element name="funcao" nillable="true" type="xsd:string"/>
+     <element name="login" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="senha" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
  </wsdl:types>
-
-   <wsdl:message name="taskextratoResponse">
-
-      <wsdl:part element="impl:taskextratoResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
 
    <wsdl:message name="tasktransferenciaResponse">
 
@@ -121,30 +159,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="taskcambioRequest">
 
       <wsdl:part element="impl:taskcambio" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="tasksaqueResponse">
-
-      <wsdl:part element="impl:tasksaqueResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="tasksaldoRequest">
-
-      <wsdl:part element="impl:tasksaldo" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="tasksaldoResponse">
-
-      <wsdl:part element="impl:tasksaldoResponse" name="parameters">
 
       </wsdl:part>
 
@@ -174,6 +188,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="taskloginRequest">
+
+      <wsdl:part element="impl:tasklogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskloginResponse">
+
+      <wsdl:part element="impl:taskloginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="taskextratoRequest">
 
       <wsdl:part element="impl:taskextrato" name="parameters">
@@ -198,15 +228,63 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="taskdadosFuncionarioRequest">
+
+      <wsdl:part element="impl:taskdadosFuncionario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskextratoResponse">
+
+      <wsdl:part element="impl:taskextratoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaqueResponse">
+
+      <wsdl:part element="impl:tasksaqueResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaldoRequest">
+
+      <wsdl:part element="impl:tasksaldo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaldoResponse">
+
+      <wsdl:part element="impl:tasksaldoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskdadosFuncionarioResponse">
+
+      <wsdl:part element="impl:taskdadosFuncionarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="TaskCliente">
 
-      <wsdl:operation name="taskcambio">
+      <wsdl:operation name="tasklogin">
 
-         <wsdl:input message="impl:taskcambioRequest" name="taskcambioRequest">
+         <wsdl:input message="impl:taskloginRequest" name="taskloginRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:taskcambioResponse" name="taskcambioResponse">
+         <wsdl:output message="impl:taskloginResponse" name="taskloginResponse">
 
        </wsdl:output>
 
@@ -219,18 +297,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:taskextratoResponse" name="taskextratoResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="taskdeposito">
-
-         <wsdl:input message="impl:taskdepositoRequest" name="taskdepositoRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:taskdepositoResponse" name="taskdepositoResponse">
 
        </wsdl:output>
 
@@ -260,6 +326,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="taskdeposito">
+
+         <wsdl:input message="impl:taskdepositoRequest" name="taskdepositoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskdepositoResponse" name="taskdepositoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskcambio">
+
+         <wsdl:input message="impl:taskcambioRequest" name="taskcambioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskcambioResponse" name="taskcambioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdadosFuncionario">
+
+         <wsdl:input message="impl:taskdadosFuncionarioRequest" name="taskdadosFuncionarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskdadosFuncionarioResponse" name="taskdadosFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="tasktransferencia">
 
          <wsdl:input message="impl:tasktransferenciaRequest" name="tasktransferenciaRequest">
@@ -278,17 +380,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="taskcambio">
+      <wsdl:operation name="tasklogin">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="taskcambioRequest">
+         <wsdl:input name="taskloginRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="taskcambioResponse">
+         <wsdl:output name="taskloginResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -307,24 +409,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="taskextratoResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="taskdeposito">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="taskdepositoRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="taskdepositoResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -361,6 +445,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="tasksaldoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdeposito">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskdepositoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskdepositoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskcambio">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskcambioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskcambioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdadosFuncionario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskdadosFuncionarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskdadosFuncionarioResponse">
 
             <wsdlsoap:body use="literal"/>
 

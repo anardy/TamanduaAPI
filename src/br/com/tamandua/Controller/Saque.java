@@ -6,7 +6,7 @@ import br.com.tamandua.Model.SaqueModel;
 
 public class Saque extends Transaction {
 	
-	public String trans_saque(Double valor, String nroconta, String senha) {
+	public String trans_saque(Double valor, String nroconta, String senha, String codigoFunc) {
 		Conta conta = new Conta();
 		String result = null;
 		if (conta.valida_nroconta(nroconta)) {
@@ -22,7 +22,7 @@ public class Saque extends Transaction {
 							SaqueDAO saquedao = new SaqueDAO();
 							saquemodel.setValor(valor);
 							saquemodel.setNroconta(Integer.parseInt(nroconta));
-							saquemodel.setCodfuncionario("321");
+							saquemodel.setCodfuncionario(codigoFunc);
 							saquedao.inserir_saque(saquemodel);
 							
 							result = "Transação realizada com sucesso!";

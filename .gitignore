@@ -1,16 +1,5 @@
 # Numerous always-ignore extensions
-*.diff
-*.err
-*.orig
 *.log
-*.rej
-*.swo
-*.swp
-*.vi
-*~
-*.sass-cache
-*.pdf
-
 *.jar
 *.war
 *.ear
@@ -21,3 +10,4 @@
 .project
 .settings
 .classpath
+build/
