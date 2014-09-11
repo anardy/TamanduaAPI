@@ -10,6 +10,17 @@
       <parameter name="className" value="br.com.tamandua.tasks.TaskCliente"/>
       <parameter name="wsdlPortType" value="TaskCliente"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://Model.tamandua.com.br" name="taskdadosFuncionario" qname="operNS:taskdadosFuncionario" returnQName="retNS:taskdadosFuncionarioReturn" returnType="rtns:Funcionario" soapAction="">
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="tasktransferencia" qname="operNS:tasktransferencia" returnQName="retNS:tasktransferenciaReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta_concedente" type="tns:string"/>
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta_beneficiado" type="tns:string"/>
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valor" type="tns:double"/>
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha_concedente" type="tns:string"/>
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigoFunc" type="tns:string"/>
+      </operation>
       <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="tasklogin" qname="operNS:tasklogin" returnQName="retNS:taskloginReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha" type="tns:string"/>
@@ -25,10 +36,6 @@
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha" type="tns:string"/>
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigoFunc" type="tns:string"/>
       </operation>
-      <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="tasksaldo" qname="operNS:tasksaldo" returnQName="retNS:tasksaldoReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta" type="tns:string"/>
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha" type="tns:string"/>
-      </operation>
       <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="taskdeposito" qname="operNS:taskdeposito" returnQName="retNS:taskdepositoReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta_beneficiado" type="tns:string"/>
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valor" type="tns:double"/>
@@ -40,16 +47,9 @@
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valor_real" type="tns:double"/>
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigoFunc" type="tns:string"/>
       </operation>
-      <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://Model.tamandua.com.br" name="taskdadosFuncionario" qname="operNS:taskdadosFuncionario" returnQName="retNS:taskdadosFuncionarioReturn" returnType="rtns:Funcionario" soapAction="">
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+      <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="tasksaldo" qname="operNS:tasksaldo" returnQName="retNS:tasksaldoReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta" type="tns:string"/>
         <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha" type="tns:string"/>
-      </operation>
-      <operation xmlns:operNS="http://tasks.tamandua.com.br" xmlns:retNS="http://tasks.tamandua.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="tasktransferencia" qname="operNS:tasktransferencia" returnQName="retNS:tasktransferenciaReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta_concedente" type="tns:string"/>
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nroconta_beneficiado" type="tns:string"/>
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:valor" type="tns:double"/>
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:senha_concedente" type="tns:string"/>
-        <parameter xmlns:pns="http://tasks.tamandua.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigoFunc" type="tns:string"/>
       </operation>
       <parameter name="allowedMethods" value="tasktransferencia tasksaque taskextrato taskdeposito tasklogin taskcambio taskdadosFuncionario tasksaldo"/>
 
