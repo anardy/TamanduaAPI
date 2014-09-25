@@ -26,7 +26,7 @@ public class Extrato {
 		}
 
 		List<ExtratoModel> dados_saque = extratodao
-				.extrair_extrato_saque(nroconta);
+				.extrair_extrato_saque(nroconta, data_inicio, data_fim);
 		for (ExtratoModel extratoModel : dados_saque) {
 			Timestamp data = extratoModel.getData();
 			SimpleDateFormat formatador = new SimpleDateFormat(
@@ -37,7 +37,7 @@ public class Extrato {
 					+ extratoModel.getCodigo_funcionario() + "<br>";
 		}
 		List<ExtratoModel> dados_transferencia_concedente = extratodao
-				.extrair_extrato_transferenciaConcedente(nroconta);
+				.extrair_extrato_transferenciaConcedente(nroconta, data_inicio, data_fim);
 		for (ExtratoModel extratoModel : dados_transferencia_concedente) {
 			Timestamp data = extratoModel.getData();
 			SimpleDateFormat formatador = new SimpleDateFormat(
@@ -50,7 +50,7 @@ public class Extrato {
 					+ "<br>";
 		}
 		List<ExtratoModel> dados_transferencia_beneficiado = extratodao
-				.extrair_extrato_transferenciaBeneficiado(nroconta);
+				.extrair_extrato_transferenciaBeneficiado(nroconta, data_inicio, data_fim);
 		for (ExtratoModel extratoModel : dados_transferencia_beneficiado) {
 			Timestamp data = extratoModel.getData();
 			SimpleDateFormat formatador = new SimpleDateFormat(

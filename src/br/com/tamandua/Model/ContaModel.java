@@ -5,7 +5,7 @@ public class ContaModel {
 	private int nroconta;
 	private Double saldo;
 	private String senha;
-	private String situacao;
+	private short status;
 
 	public String getCpf() {
 		return cpf;
@@ -39,11 +39,11 @@ public class ContaModel {
 		this.senha = senha;
 	}
 
-	public String getSituacao() {
-		return situacao;
+	public short getStatus() {
+		return status;
 	}
 
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+	public void setStatus(short status) {
+		this.status = status;
 	}
 }

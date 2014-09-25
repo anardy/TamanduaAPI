@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.tamandua.Connection.ConnectionFactory;
-import br.com.tamandua.Model.Funcionario;
+import br.com.tamandua.Model.FuncionarioModel;
 
 public class LoginDAO extends DAO {
 	
-	public boolean autorizadorUsuario(Funcionario funcionario) {
+	public boolean autorizadorUsuario(FuncionarioModel funcionario) {
 		boolean result = false;
-		String sql = "select count(1) from funcionario f where f.login = ? and f.senha = ?";
+		String sql = "select * from funcionario f where f.login = ? and f.senha = ? limit 1";
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class LoginDAO extends DAO {
 		return result;
 	}
 	
-	public Funcionario verificarTipoFuncionario(Funcionario funcionario) {
+	public FuncionarioModel verificarTipoFuncionario(FuncionarioModel funcionario) {
 		String sql = "select f.nome, f.funcao, f.cpf from funcionario f where f.login = ? and f.senha = ?";
 		Connection connection = ConnectionFactory.getConnection();
 		try {
@@ -61,5 +61,30 @@ public class LoginDAO extends DAO {
 			}
 		}
 		return funcionario;
+	}
+	
+	public boolean verificarLoginAtivo(FuncionarioModel funcionario) {
+		short status = 0;
+		String sql = "select f.status from funcionario f where f.login = ?";
+		Connection connection = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, funcionario.getLogin());
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				status = rs.getShort("status");
+			}
+		} catch (SQLException e) {
+			log.error("Erro ao verificar status da conta do funcionario " + e);
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				log.error("Erro ao verificar status da conta do funcionario " + e);
+			}
+		}
+		int t = (int) (status); 
+		return (t == ATIVO) ? true : false;
 	}
 }

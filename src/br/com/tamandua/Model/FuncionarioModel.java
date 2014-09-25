@@ -1,11 +1,12 @@
 package br.com.tamandua.Model;
 
-public class Funcionario {
+public class FuncionarioModel {
 	private String senha;
 	private String nome;
 	private String login;
 	private String funcao;
 	private String cpf;
+	private Short status;
 
 	public String getSenha() {
 		return senha;
@@ -45,5 +46,13 @@ public class Funcionario {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public Short getStatus() {
+		return status;
+	}
+
+	public void setStatus(Short status) {
+		this.status = status;
 	}
 }

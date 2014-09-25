@@ -22,8 +22,7 @@ public class Deposito extends Transaction {
 			deposito.setTipo("cliente");
 			deposito.setCodigo_funcionario(codigoFunc);
 				
-			DepositoDAO depositodao = new DepositoDAO();
-			depositodao.inserir_deposito(deposito);
+			new DepositoDAO().inserir_deposito(deposito);
 			
 			result = "Transação de Depósito executada com sucesso";
 		} else {

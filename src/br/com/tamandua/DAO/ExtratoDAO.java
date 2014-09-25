@@ -26,6 +26,7 @@ public class ExtratoDAO extends DAO {
 			e.printStackTrace();
 		}
 		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario,d.tipo from deposito d where d.nroconta = ? AND d.data BETWEEN ? AND ?";
+		
 		List<ExtratoModel> dados = new ArrayList<ExtratoModel>();
 		Connection connection = ConnectionFactory.getConnection();
 		try {
@@ -56,13 +57,24 @@ public class ExtratoDAO extends DAO {
 		return dados;
 	}
 	
-	public List<ExtratoModel> extrair_extrato_saque(String nroconta) {
-		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario from saque d where d.nroconta = ?";
+	public List<ExtratoModel> extrair_extrato_saque(String nroconta, String data_inicio, String data_final) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_inicio_nova = null;
+		Date data_final_nova = null;
+		try {
+			data_inicio_nova = new java.sql.Date(format.parse(data_inicio).getTime());
+			data_final_nova = new java.sql.Date(format.parse(data_final).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario from saque d where d.nroconta = ? AND d.data BETWEEN ? AND ?";
 		List<ExtratoModel> dados = new ArrayList<ExtratoModel>();
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, Integer.parseInt(nroconta));
+			stmt.setString(2, data_inicio_nova + " 00:00:00");
+			stmt.setString(3, data_final_nova + " 23:59:59");
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
@@ -85,13 +97,24 @@ public class ExtratoDAO extends DAO {
 		return dados;
 	}
 	
-	public List<ExtratoModel> extrair_extrato_transferenciaConcedente(String nroconta) {
-		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario,d.cliente_beneficiado from transferencia d where d.cliente_concedente = ?";
+	public List<ExtratoModel> extrair_extrato_transferenciaConcedente(String nroconta, String data_inicio, String data_final) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_inicio_nova = null;
+		Date data_final_nova = null;
+		try {
+			data_inicio_nova = new java.sql.Date(format.parse(data_inicio).getTime());
+			data_final_nova = new java.sql.Date(format.parse(data_final).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario,d.cliente_beneficiado from transferencia d where d.cliente_concedente = ? AND d.data BETWEEN ? AND ?";
 		List<ExtratoModel> dados = new ArrayList<ExtratoModel>();
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, Integer.parseInt(nroconta));
+			stmt.setString(2, data_inicio_nova + " 00:00:00");
+			stmt.setString(3, data_final_nova + " 23:59:59");
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
@@ -116,13 +139,24 @@ public class ExtratoDAO extends DAO {
 		return dados;
 	}
 	
-	public List<ExtratoModel> extrair_extrato_transferenciaBeneficiado(String nroconta) {
-		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario,d.cliente_concedente from transferencia d where d.cliente_beneficiado = ?";
+	public List<ExtratoModel> extrair_extrato_transferenciaBeneficiado(String nroconta, String data_inicio, String data_final) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_inicio_nova = null;
+		Date data_final_nova = null;
+		try {
+			data_inicio_nova = new java.sql.Date(format.parse(data_inicio).getTime());
+			data_final_nova = new java.sql.Date(format.parse(data_final).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String sql = "select d.codigo,d.valor,d.data,d.codigo_funcionario,d.cliente_concedente from transferencia d where d.cliente_beneficiado = ? AND d.data BETWEEN ? AND ?";
 		List<ExtratoModel> dados = new ArrayList<ExtratoModel>();
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, Integer.parseInt(nroconta));
+			stmt.setString(2, data_inicio_nova + " 00:00:00");
+			stmt.setString(3, data_final_nova + " 23:59:59");
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {

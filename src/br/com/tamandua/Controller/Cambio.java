@@ -18,8 +18,7 @@ public class Cambio extends Transaction {
 			cambio.setValor_real(valor_real);
 			cambio.setCodigo_funcionario(codigoFunc);
 
-			CambioDAO cambiodao = new CambioDAO();
-			result = cambiodao.inserir_cambio(cambio);
+			result = new CambioDAO().inserir_cambio(cambio);
 			mensagem = (result) ? "Transação de Cambio executada com sucesso" : "Houve um erro na execução da transação de Cambio";
 		} else {
 			mensagem = "Valores incorretos";

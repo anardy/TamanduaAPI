@@ -1,6 +1,7 @@
 package br.com.tamandua.Controller;
 
 import br.com.tamandua.DAO.ContaDAO;
+import br.com.tamandua.Model.ContaModel;
 
 public class Conta extends Transaction {
 
@@ -37,4 +38,18 @@ public class Conta extends Transaction {
 		return (dao.valida_saldo(nroconta) + valor);
 	}
 
+	public String criar_conta(String cpf, String senha) {
+		String mensagem = "";
+		boolean result = false;
+
+		ContaModel conta = new ContaModel();
+
+		conta.setCpf(cpf);
+		conta.setSenha(senha);
+
+		result = new ContaDAO().criar_conta(conta);
+		mensagem = (result) ? "Conta gerada com Sucesso!"
+				: "Houve um erro ao gerar a Conta";
+		return mensagem;
+	}
 }

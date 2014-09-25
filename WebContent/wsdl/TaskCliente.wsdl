@@ -5,36 +5,64 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://tasks.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://Model.tamandua.com.br"/>
-   <element name="taskdadosFuncionario">
+   <element name="taskverificaLoginAtivo">
     <complexType>
      <sequence>
       <element name="user" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskverificaLoginAtivoResponse">
+    <complexType>
+     <sequence>
+      <element name="taskverificaLoginAtivoReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskconsultaFuncionario">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskconsultaFuncionarioResponse">
+    <complexType>
+     <sequence>
+      <element name="taskconsultaFuncionarioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskinserirFuncionario">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+      <element name="nome" type="xsd:string"/>
+      <element name="login" type="xsd:string"/>
       <element name="senha" type="xsd:string"/>
+      <element name="status" type="xsd:short"/>
+      <element name="funcao" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="taskdadosFuncionarioResponse">
+   <element name="taskinserirFuncionarioResponse">
     <complexType>
      <sequence>
-      <element name="taskdadosFuncionarioReturn" type="tns1:Funcionario"/>
+      <element name="taskinserirFuncionarioReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="tasktransferencia">
+   <element name="taskremoverFuncionario">
     <complexType>
      <sequence>
-      <element name="nroconta_concedente" type="xsd:string"/>
-      <element name="nroconta_beneficiado" type="xsd:string"/>
-      <element name="valor" type="xsd:double"/>
-      <element name="senha_concedente" type="xsd:string"/>
-      <element name="codigoFunc" type="xsd:string"/>
+      <element name="cpf" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="tasktransferenciaResponse">
+   <element name="taskremoverFuncionarioResponse">
     <complexType>
      <sequence>
-      <element name="tasktransferenciaReturn" type="xsd:string"/>
+      <element name="taskremoverFuncionarioReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -134,23 +162,140 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="tasktransferencia">
+    <complexType>
+     <sequence>
+      <element name="nroconta_concedente" type="xsd:string"/>
+      <element name="nroconta_beneficiado" type="xsd:string"/>
+      <element name="valor" type="xsd:double"/>
+      <element name="senha_concedente" type="xsd:string"/>
+      <element name="codigoFunc" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tasktransferenciaResponse">
+    <complexType>
+     <sequence>
+      <element name="tasktransferenciaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskinserirCliente">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+      <element name="nome" type="xsd:string"/>
+      <element name="telefone" type="xsd:string"/>
+      <element name="endereco" type="xsd:string"/>
+      <element name="status" type="xsd:short"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskinserirClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="taskinserirClienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskremoverCliente">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskremoverClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="taskremoverClienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskconsultaCliente">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskconsultaClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="taskconsultaClienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdadosFuncionario">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskdadosFuncionarioResponse">
+    <complexType>
+     <sequence>
+      <element name="taskdadosFuncionarioReturn" type="tns1:FuncionarioModel"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskeditarCliente">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+      <element name="nome" type="xsd:string"/>
+      <element name="telefone" type="xsd:string"/>
+      <element name="endereco" type="xsd:string"/>
+      <element name="status" type="xsd:short"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskeditarClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="taskeditarClienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskeditarFuncionario">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+      <element name="nome" type="xsd:string"/>
+      <element name="login" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+      <element name="status" type="xsd:short"/>
+      <element name="funcao" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskeditarFuncionarioResponse">
+    <complexType>
+     <sequence>
+      <element name="taskeditarFuncionarioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://Model.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
-   <complexType name="Funcionario">
+   <complexType name="FuncionarioModel">
     <sequence>
      <element name="cpf" nillable="true" type="xsd:string"/>
      <element name="funcao" nillable="true" type="xsd:string"/>
      <element name="login" nillable="true" type="xsd:string"/>
      <element name="nome" nillable="true" type="xsd:string"/>
      <element name="senha" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:short"/>
     </sequence>
    </complexType>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="tasktransferenciaResponse">
+   <wsdl:message name="taskconsultaClienteRequest">
 
-      <wsdl:part element="impl:tasktransferenciaResponse" name="parameters">
+      <wsdl:part element="impl:taskconsultaCliente" name="parameters">
 
       </wsdl:part>
 
@@ -164,9 +309,161 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="taskeditarClienteResponse">
+
+      <wsdl:part element="impl:taskeditarClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskinserirClienteResponse">
+
+      <wsdl:part element="impl:taskinserirClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="taskdepositoResponse">
 
       <wsdl:part element="impl:taskdepositoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskextratoRequest">
+
+      <wsdl:part element="impl:taskextrato" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskloginResponse">
+
+      <wsdl:part element="impl:taskloginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskloginRequest">
+
+      <wsdl:part element="impl:tasklogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskremoverClienteResponse">
+
+      <wsdl:part element="impl:taskremoverClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskdepositoRequest">
+
+      <wsdl:part element="impl:taskdeposito" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskremoverClienteRequest">
+
+      <wsdl:part element="impl:taskremoverCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaldoRequest">
+
+      <wsdl:part element="impl:tasksaldo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskeditarFuncionarioRequest">
+
+      <wsdl:part element="impl:taskeditarFuncionario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskconsultaFuncionarioRequest">
+
+      <wsdl:part element="impl:taskconsultaFuncionario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasksaldoResponse">
+
+      <wsdl:part element="impl:tasksaldoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskconsultaClienteResponse">
+
+      <wsdl:part element="impl:taskconsultaClienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskverificaLoginAtivoResponse">
+
+      <wsdl:part element="impl:taskverificaLoginAtivoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tasktransferenciaResponse">
+
+      <wsdl:part element="impl:tasktransferenciaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskeditarFuncionarioResponse">
+
+      <wsdl:part element="impl:taskeditarFuncionarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskeditarClienteRequest">
+
+      <wsdl:part element="impl:taskeditarCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskinserirFuncionarioResponse">
+
+      <wsdl:part element="impl:taskinserirFuncionarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskconsultaFuncionarioResponse">
+
+      <wsdl:part element="impl:taskconsultaFuncionarioResponse" name="parameters">
 
       </wsdl:part>
 
@@ -188,41 +485,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="taskloginRequest">
-
-      <wsdl:part element="impl:tasklogin" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="taskloginResponse">
-
-      <wsdl:part element="impl:taskloginResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="taskextratoRequest">
-
-      <wsdl:part element="impl:taskextrato" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="tasksaqueRequest">
 
       <wsdl:part element="impl:tasksaque" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="taskdepositoRequest">
-
-      <wsdl:part element="impl:taskdeposito" name="parameters">
 
       </wsdl:part>
 
@@ -244,6 +509,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="taskinserirFuncionarioRequest">
+
+      <wsdl:part element="impl:taskinserirFuncionario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskremoverFuncionarioRequest">
+
+      <wsdl:part element="impl:taskremoverFuncionario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="tasksaqueResponse">
 
       <wsdl:part element="impl:tasksaqueResponse" name="parameters">
@@ -252,17 +533,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="tasksaldoRequest">
+   <wsdl:message name="taskinserirClienteRequest">
 
-      <wsdl:part element="impl:tasksaldo" name="parameters">
+      <wsdl:part element="impl:taskinserirCliente" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="tasksaldoResponse">
+   <wsdl:message name="taskremoverFuncionarioResponse">
 
-      <wsdl:part element="impl:tasksaldoResponse" name="parameters">
+      <wsdl:part element="impl:taskremoverFuncionarioResponse" name="parameters">
 
       </wsdl:part>
 
@@ -276,27 +557,59 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="taskverificaLoginAtivoRequest">
+
+      <wsdl:part element="impl:taskverificaLoginAtivo" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="TaskCliente">
 
-      <wsdl:operation name="taskdadosFuncionario">
+      <wsdl:operation name="taskverificaLoginAtivo">
 
-         <wsdl:input message="impl:taskdadosFuncionarioRequest" name="taskdadosFuncionarioRequest">
+         <wsdl:input message="impl:taskverificaLoginAtivoRequest" name="taskverificaLoginAtivoRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:taskdadosFuncionarioResponse" name="taskdadosFuncionarioResponse">
+         <wsdl:output message="impl:taskverificaLoginAtivoResponse" name="taskverificaLoginAtivoResponse">
 
        </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="tasktransferencia">
+      <wsdl:operation name="taskconsultaFuncionario">
 
-         <wsdl:input message="impl:tasktransferenciaRequest" name="tasktransferenciaRequest">
+         <wsdl:input message="impl:taskconsultaFuncionarioRequest" name="taskconsultaFuncionarioRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:tasktransferenciaResponse" name="tasktransferenciaResponse">
+         <wsdl:output message="impl:taskconsultaFuncionarioResponse" name="taskconsultaFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskinserirFuncionario">
+
+         <wsdl:input message="impl:taskinserirFuncionarioRequest" name="taskinserirFuncionarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskinserirFuncionarioResponse" name="taskinserirFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskremoverFuncionario">
+
+         <wsdl:input message="impl:taskremoverFuncionarioRequest" name="taskremoverFuncionarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskremoverFuncionarioResponse" name="taskremoverFuncionarioResponse">
 
        </wsdl:output>
 
@@ -374,23 +687,107 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="tasktransferencia">
+
+         <wsdl:input message="impl:tasktransferenciaRequest" name="tasktransferenciaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:tasktransferenciaResponse" name="tasktransferenciaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskinserirCliente">
+
+         <wsdl:input message="impl:taskinserirClienteRequest" name="taskinserirClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskinserirClienteResponse" name="taskinserirClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskremoverCliente">
+
+         <wsdl:input message="impl:taskremoverClienteRequest" name="taskremoverClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskremoverClienteResponse" name="taskremoverClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskconsultaCliente">
+
+         <wsdl:input message="impl:taskconsultaClienteRequest" name="taskconsultaClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskconsultaClienteResponse" name="taskconsultaClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdadosFuncionario">
+
+         <wsdl:input message="impl:taskdadosFuncionarioRequest" name="taskdadosFuncionarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskdadosFuncionarioResponse" name="taskdadosFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskeditarCliente">
+
+         <wsdl:input message="impl:taskeditarClienteRequest" name="taskeditarClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskeditarClienteResponse" name="taskeditarClienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskeditarFuncionario">
+
+         <wsdl:input message="impl:taskeditarFuncionarioRequest" name="taskeditarFuncionarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskeditarFuncionarioResponse" name="taskeditarFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="TaskClienteSoapBinding" type="impl:TaskCliente">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="taskdadosFuncionario">
+      <wsdl:operation name="taskverificaLoginAtivo">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="taskdadosFuncionarioRequest">
+         <wsdl:input name="taskverificaLoginAtivoRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="taskdadosFuncionarioResponse">
+         <wsdl:output name="taskverificaLoginAtivoResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -398,17 +795,53 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="tasktransferencia">
+      <wsdl:operation name="taskconsultaFuncionario">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="tasktransferenciaRequest">
+         <wsdl:input name="taskconsultaFuncionarioRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="tasktransferenciaResponse">
+         <wsdl:output name="taskconsultaFuncionarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskinserirFuncionario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskinserirFuncionarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskinserirFuncionarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskremoverFuncionario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskremoverFuncionarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskremoverFuncionarioResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -517,6 +950,132 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="tasksaldoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tasktransferencia">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tasktransferenciaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tasktransferenciaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskinserirCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskinserirClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskinserirClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskremoverCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskremoverClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskremoverClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskconsultaCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskconsultaClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskconsultaClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskdadosFuncionario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskdadosFuncionarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskdadosFuncionarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskeditarCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskeditarClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskeditarClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskeditarFuncionario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskeditarFuncionarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskeditarFuncionarioResponse">
 
             <wsdlsoap:body use="literal"/>
 

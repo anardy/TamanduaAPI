@@ -3,9 +3,9 @@ package br.com.tamandua.Model;
 public class ClienteModel {
 	private String cpf;
 	private String nome;
-	private Double renda;
 	private String endereco;
-	private String situacao;
+	private short status;
+	private String telefone;
 
 	public String getCpf() {
 		return cpf;
@@ -22,15 +22,7 @@ public class ClienteModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Double getRenda() {
-		return renda;
-	}
-
-	public void setRenda(Double renda) {
-		this.renda = renda;
-	}
-
+	
 	public String getEndereco() {
 		return endereco;
 	}
@@ -39,11 +31,20 @@ public class ClienteModel {
 		this.endereco = endereco;
 	}
 
-	public String getSituacao() {
-		return situacao;
+	public short getStatus() {
+		return status;
 	}
 
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
+	public void setStatus(short status) {
+		this.status = status;
 	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 }
