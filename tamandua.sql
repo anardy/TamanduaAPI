@@ -130,7 +130,7 @@ CREATE TABLE conta (
 	CONSTRAINT statusconta_ifk FOREIGN KEY (status) REFERENCES status (codigo)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `conta` VALUES ('111.111.111-11','1','0','7c4a8d09ca3762af61e59520943dc26494f8941b','sim');
+INSERT INTO `conta` VALUES ('111.111.111-11', '', '', '7c4a8d09ca3762af61e59520943dc26494f8941b',1);
 
 --
 -- Table structure for table `deposito`

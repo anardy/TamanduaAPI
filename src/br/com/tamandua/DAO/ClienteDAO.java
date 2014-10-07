@@ -13,6 +13,7 @@ import br.com.tamandua.Model.ClienteModel;
 public class ClienteDAO extends DAO {
 
 	public boolean inserirCliente(ClienteModel cliente) {
+		log.info("Status: " + cliente.getStatus() + " cpf: " + cliente.getCpf());
 		boolean result = false;
 		String sql = "insert into cliente (cpf, nome, endereco, telefone, status) values (?,?,?,?,?)";
 		Connection connection = ConnectionFactory.getConnection();

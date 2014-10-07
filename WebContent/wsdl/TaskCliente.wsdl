@@ -5,20 +5,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://tasks.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://Model.tamandua.com.br"/>
-   <element name="taskverificaLoginAtivo">
-    <complexType>
-     <sequence>
-      <element name="user" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="taskverificaLoginAtivoResponse">
-    <complexType>
-     <sequence>
-      <element name="taskverificaLoginAtivoReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="taskconsultaFuncionario">
     <complexType>
      <sequence>
@@ -63,6 +49,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="taskremoverFuncionarioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskverificaLoginAtivo">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskverificaLoginAtivoResponse">
+    <complexType>
+     <sequence>
+      <element name="taskverificaLoginAtivoReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -198,20 +198,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="taskremoverCliente">
-    <complexType>
-     <sequence>
-      <element name="cpf" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="taskremoverClienteResponse">
-    <complexType>
-     <sequence>
-      <element name="taskremoverClienteReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="taskconsultaCliente">
     <complexType>
      <sequence>
@@ -238,6 +224,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="taskdadosFuncionarioReturn" type="tns1:FuncionarioModel"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskremoverCliente">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskremoverClienteResponse">
+    <complexType>
+     <sequence>
+      <element name="taskremoverClienteReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -278,6 +278,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="taskcriarConta">
+    <complexType>
+     <sequence>
+      <element name="cpf" type="xsd:string"/>
+      <element name="senha" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="taskcriarContaResponse">
+    <complexType>
+     <sequence>
+      <element name="taskcriarContaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://Model.tamandua.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="FuncionarioModel">
@@ -304,6 +319,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="taskcambioRequest">
 
       <wsdl:part element="impl:taskcambio" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskcriarContaResponse">
+
+      <wsdl:part element="impl:taskcriarContaResponse" name="parameters">
 
       </wsdl:part>
 
@@ -376,6 +399,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="taskremoverClienteRequest">
 
       <wsdl:part element="impl:taskremoverCliente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="taskcriarContaRequest">
+
+      <wsdl:part element="impl:taskcriarConta" name="parameters">
 
       </wsdl:part>
 
@@ -567,18 +598,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="TaskCliente">
 
-      <wsdl:operation name="taskverificaLoginAtivo">
-
-         <wsdl:input message="impl:taskverificaLoginAtivoRequest" name="taskverificaLoginAtivoRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:taskverificaLoginAtivoResponse" name="taskverificaLoginAtivoResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="taskconsultaFuncionario">
 
          <wsdl:input message="impl:taskconsultaFuncionarioRequest" name="taskconsultaFuncionarioRequest">
@@ -610,6 +629,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:taskremoverFuncionarioResponse" name="taskremoverFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskverificaLoginAtivo">
+
+         <wsdl:input message="impl:taskverificaLoginAtivoRequest" name="taskverificaLoginAtivoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskverificaLoginAtivoResponse" name="taskverificaLoginAtivoResponse">
 
        </wsdl:output>
 
@@ -711,18 +742,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="taskremoverCliente">
-
-         <wsdl:input message="impl:taskremoverClienteRequest" name="taskremoverClienteRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:taskremoverClienteResponse" name="taskremoverClienteResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="taskconsultaCliente">
 
          <wsdl:input message="impl:taskconsultaClienteRequest" name="taskconsultaClienteRequest">
@@ -742,6 +761,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:taskdadosFuncionarioResponse" name="taskdadosFuncionarioResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskremoverCliente">
+
+         <wsdl:input message="impl:taskremoverClienteRequest" name="taskremoverClienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskremoverClienteResponse" name="taskremoverClienteResponse">
 
        </wsdl:output>
 
@@ -771,29 +802,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="taskcriarConta">
+
+         <wsdl:input message="impl:taskcriarContaRequest" name="taskcriarContaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:taskcriarContaResponse" name="taskcriarContaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="TaskClienteSoapBinding" type="impl:TaskCliente">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="taskverificaLoginAtivo">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="taskverificaLoginAtivoRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="taskverificaLoginAtivoResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="taskconsultaFuncionario">
 
@@ -842,6 +867,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="taskremoverFuncionarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskverificaLoginAtivo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskverificaLoginAtivoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskverificaLoginAtivoResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -993,24 +1036,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="taskremoverCliente">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="taskremoverClienteRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="taskremoverClienteResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="taskconsultaCliente">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1047,6 +1072,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="taskremoverCliente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskremoverClienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskremoverClienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="taskeditarCliente">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1076,6 +1119,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="taskeditarFuncionarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="taskcriarConta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="taskcriarContaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="taskcriarContaResponse">
 
             <wsdlsoap:body use="literal"/>
 
