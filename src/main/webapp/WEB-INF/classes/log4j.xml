@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration>
+
+  <appender name="TAMANDUA" class="org.apache.log4j.RollingFileAppender">
+     <param name="MaxFileSize" value="2MB"/>
+     <param name="MaxBackupIndex" value="2"/>
+     <param name="File" value="C:\\Andre\\Bibliotecas\\Web Container\\wildfly-8.0.0.Final\\standalone\\log\\tamandua.log"/>
+     <layout class="org.apache.log4j.PatternLayout">
+       <param name="ConversionPattern" value="[%p] %d{dd MMM hh:mm:ss.SSS aa} %t [%c] %m%n"/>
+     </layout>
+  </appender>
+  
+  <root>
+    <priority value ="error" />
+    <appender-ref ref="TAMANDUA"/>
+  </root>
+  
+  
+</log4j:configuration>
