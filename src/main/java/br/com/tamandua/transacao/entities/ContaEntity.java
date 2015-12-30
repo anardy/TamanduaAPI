@@ -2,22 +2,32 @@ package br.com.tamandua.transacao.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="conta")
+@NamedQueries({
+	@NamedQuery(name = ContaEntity.BUSCAR_CONTA, query = "select c from ContaEntity c where c.nroconta = :nroconta")
+})
 public class ContaEntity {
-	private String cpf;
+	
+	public static final String BUSCAR_CONTA = "ContaEntity.BuscarConta";
+	
+	private String cliente;
 	@Id
 	private Integer nroconta;
 	private Double saldo;
 	private String senha;
 	private Integer status;
 
-	public String getCpf() {
-		return cpf;
+	public String getCliente() {
+		return cliente;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
 	}
 
 	public Integer getNroconta() {
