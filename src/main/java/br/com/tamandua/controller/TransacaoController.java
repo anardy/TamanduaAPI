@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.tamandua.transacao.entities.ContaEntity;
+import br.com.tamandua.transacao.entities.HistTransacaoEntity;
 import br.com.tamandua.transacao.service.TransacaoService;
 
 @Path("/transacao")
@@ -66,6 +67,25 @@ public class TransacaoController {
 			resp = Response.status(203).header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity).build();
+		}
+		return resp;
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/extrato/{nroconta}")
+	public Response extrato(@PathParam("nroconta") Integer nroConta) {
+		List<HistTransacaoEntity> lista = transacaoService.extrairExtrato(nroConta);
+		Response resp = null;
+		if (lista.size() > 0) {
+			resp = Response.status(200).header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Methods", "GET")
+				.header("Content-type", "application/json")
+				.entity(lista).build();
+		} else {
+			resp = Response.status(204).header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Methods", "GET")
+					.header("Content-type", "application/json").build();
 		}
 		return resp;
 	}

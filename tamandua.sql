@@ -21,6 +21,15 @@ INSERT INTO `tipotransacao` VALUES (2, 'extrato');
 INSERT INTO `tipotransacao` VALUES (3, 'transferencia');
 INSERT INTO `tipotransacao` VALUES (4, 'pagamento');
 
+CREATE TABLE `fator` (
+  `codigo` int(2) NOT NULL,
+  `nome` varchar(20),
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `fator` VALUES (1, 'credito');
+INSERT INTO `fator` VALUES (2, 'debito');
+
 CREATE TABLE `titulospagamento` (
   `codigo` int(2) NOT NULL,
   `nome` varchar(20),
@@ -92,9 +101,15 @@ CREATE TABLE `pagamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `histtransacao` (
+  `codigohist` int(2) NOT NULL AUTO_INCREMENT,
   `codigotransacao` int(2) NOT NULL,
-  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `nroconta` int(5) NOT NULL,
   `tipotransacao` int(2) NOT NULL,
-  PRIMARY KEY (`codigotransacao`),
-  CONSTRAINT `tipotransacaohist_ibfk` FOREIGN KEY (`tipotransacao`) REFERENCES `tipotransacao` (`codigo`)
+  `valor` double NOT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fator` int(2) NOT NULL,
+  PRIMARY KEY (`codigohist`),
+  CONSTRAINT `tipotransacaohist_ibfk` FOREIGN KEY (`tipotransacao`) REFERENCES `tipotransacao` (`codigo`),
+  CONSTRAINT `nrocontahist_ibfk` FOREIGN KEY (`nroconta`) REFERENCES `conta` (`nroconta`),
+  CONSTRAINT `fatorhist_ibfk` FOREIGN KEY (`fator`) REFERENCES `fator` (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

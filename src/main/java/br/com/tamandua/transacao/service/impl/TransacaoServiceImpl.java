@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 
 import br.com.tamandua.transacao.entities.ContaEntity;
+import br.com.tamandua.transacao.entities.HistTransacaoEntity;
 import br.com.tamandua.transacao.entities.TransferenciaEntity;
 import br.com.tamandua.transacao.repository.TransacaoRepository;
 import br.com.tamandua.transacao.service.TransacaoService;
@@ -76,5 +77,10 @@ public class TransacaoServiceImpl implements TransacaoService {
 			result = "Senha inválida";
 		}
 		return result;
+	}
+
+	@Override
+	public List<HistTransacaoEntity> extrairExtrato(Integer nroConta) {
+		return transacaoRepository.consultarExtrato(nroConta);
 	}
 }
