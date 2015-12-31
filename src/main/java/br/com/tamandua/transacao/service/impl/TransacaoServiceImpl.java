@@ -60,21 +60,25 @@ public class TransacaoServiceImpl implements TransacaoService {
 	public String inserirTransferencia(Integer nrocontaConcedente,
 			String senhaConcedente, Double valor, Integer nrocontaBeneficiado) {
 		String result = "OK";
-		if (validaSenha(nrocontaConcedente, senhaConcedente)) {
-			if (validaSaldoConta(nrocontaConcedente)) {
-				java.util.Date date = new java.util.Date();
-				TransferenciaEntity t = new TransferenciaEntity();
-				t.setNroconta_beneficiado(nrocontaBeneficiado);
-				t.setNroconta_concedente(nrocontaConcedente);
-				t.setData(new Timestamp(date.getTime()));
-				t.setValor(valor);
-				transacaoRepository.inserirTransferencia(t);
-				atualizaSaldoConta(nrocontaBeneficiado, valor);
+		if (nrocontaConcedente.intValue() != nrocontaBeneficiado.intValue()) {
+			if (validaSenha(nrocontaConcedente, senhaConcedente)) {
+				if (validaSaldoConta(nrocontaConcedente)) {
+					java.util.Date date = new java.util.Date();
+					TransferenciaEntity t = new TransferenciaEntity();
+					t.setNroconta_beneficiado(nrocontaBeneficiado);
+					t.setNroconta_concedente(nrocontaConcedente);
+					t.setData(new Timestamp(date.getTime()));
+					t.setValor(valor);
+					transacaoRepository.inserirTransferencia(t);
+					atualizaSaldoConta(nrocontaBeneficiado, valor);
+				} else {
+					result = "Sem saldo em conta";
+				}
 			} else {
-				result = "Sem saldo em conta";
+				result = "Senha inválida";
 			}
 		} else {
-			result = "Senha inválida";
+			result = "Conta deve ser diferente";
 		}
 		return result;
 	}

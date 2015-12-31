@@ -59,11 +59,13 @@ public class TransacaoController {
         entity.put("msg", result);
 		
 		if (result.equals("OK")) {
+			entity.put("tipo", "ok");
 			resp = Response.status(200)
 					.header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity).build();
 		} else {
+			entity.put("tipo", "erro");
 			resp = Response.status(203).header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity).build();
