@@ -33,9 +33,9 @@
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
+			<artifactId>javaee-web-api</artifactId>
 			<version>7.0</version>
-			<scope>povided</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
