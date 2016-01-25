@@ -63,10 +63,18 @@ public class TransacaoServiceImpl implements TransacaoService {
 		if (nrocontaConcedente.intValue() != nrocontaBeneficiado.intValue()) {
 			if (validaSenha(nrocontaConcedente, senhaConcedente)) {
 				if (validaSaldoConta(nrocontaConcedente)) {
+<<<<<<< HEAD
 					TransferenciaEntity t = new TransferenciaEntity();
 					t.setNroconta_beneficiado(nrocontaBeneficiado);
 					t.setNroconta_concedente(nrocontaConcedente);
 					t.setData(new Timestamp(System.currentTimeMillis()));
+=======
+					java.util.Date date = new java.util.Date();
+					TransferenciaEntity t = new TransferenciaEntity();
+					t.setNroconta_beneficiado(nrocontaBeneficiado);
+					t.setNroconta_concedente(nrocontaConcedente);
+					t.setData(new Timestamp(date.getTime()));
+>>>>>>> 8a0a06b17c829cba44c49c8a6f741f89144d0846
 					t.setValor(valor);
 					transacaoRepository.inserirTransferencia(t);
 					atualizaSaldoConta(nrocontaBeneficiado, valor);
