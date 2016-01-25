@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "histtransacao")
+@Table(name = "t_histtransacao")
 @NamedQueries({
 	@NamedQuery(name = HistTransacaoEntity.CONSULTAR_EXTRATO, query = "select c from HistTransacaoEntity c where c.nroconta = :nroconta")
 })

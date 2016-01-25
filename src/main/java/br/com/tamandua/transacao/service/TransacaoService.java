@@ -12,4 +12,5 @@ public interface TransacaoService {
 	public boolean validaSenha(Integer nroConta, String senha);
 	public boolean atualizaSaldoConta(Integer nroConta, Double valor);
 	public List<HistTransacaoEntity> extrairExtrato(Integer nroConta);
+	public String autentica(Integer nroConta, String senha);
 }

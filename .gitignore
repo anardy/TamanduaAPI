@@ -12,3 +12,4 @@
 .classpath
 build/
 /target/
+.tern-project

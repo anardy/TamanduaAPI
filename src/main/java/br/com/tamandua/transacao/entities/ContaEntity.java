@@ -1,13 +1,16 @@
 package br.com.tamandua.transacao.entities;
 
+import java.sql.Time;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name="conta")
+@Table(name="t_conta")
 @NamedQueries({
 	@NamedQuery(name = ContaEntity.BUSCAR_CONTA, query = "select c from ContaEntity c where c.nroconta = :nroconta")
 })
@@ -15,19 +18,21 @@ public class ContaEntity {
 	
 	public static final String BUSCAR_CONTA = "ContaEntity.BuscarConta";
 	
-	private String cliente;
 	@Id
 	private Integer nroconta;
+	private String correntista;
 	private Double saldo;
 	private String senha;
+	@Transient
+	private Time dataconta;
 	private Integer status;
 
-	public String getCliente() {
-		return cliente;
+	public String getCorrentista() {
+		return correntista;
 	}
 
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
+	public void setCorrentista(String correntista) {
+		this.correntista = correntista;
 	}
 
 	public Integer getNroconta() {
@@ -52,6 +57,14 @@ public class ContaEntity {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Time getDataconta() {
+		return dataconta;
+	}
+
+	public void setDataconta(Time dataconta) {
+		this.dataconta = dataconta;
 	}
 
 	public Integer getStatus() {
