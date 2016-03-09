@@ -30,13 +30,11 @@ public class TransacaoController {
 		List<ContaEntity> lista = transacaoService.buscarConta(nroconta);
 		Response resp = null;
 		if (lista.size() > 0) {
-			resp = Response.status(200).header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Methods", "GET")
+			resp = Response.status(200)
 				.header("Content-type", "application/json")
 				.entity(lista).build();
 		} else {
-			resp = Response.status(204).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "GET")
+			resp = Response.status(204)
 					.header("Content-type", "application/json").build();
 		}
 		return resp;
@@ -61,13 +59,10 @@ public class TransacaoController {
 		if (result.equals("OK")) {
 			entity.put("tipo", "ok");
 			resp = Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity).build();
 		} else {
 			entity.put("tipo", "erro");
-			resp = Response.status(203).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
+			resp = Response.status(203)
 					.header("Content-type", "application/json").entity(entity).build();
 		}
 		return resp;
@@ -80,13 +75,11 @@ public class TransacaoController {
 		List<HistTransacaoEntity> lista = transacaoService.extrairExtrato(nroConta);
 		Response resp = null;
 		if (lista.size() > 0) {
-			resp = Response.status(200).header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Methods", "GET")
+			resp = Response.status(200)
 				.header("Content-type", "application/json")
 				.entity(lista).build();
 		} else {
-			resp = Response.status(204).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "GET")
+			resp = Response.status(204)
 					.header("Content-type", "application/json").build();
 		}
 		return resp;

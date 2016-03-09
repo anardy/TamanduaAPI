@@ -1,5 +1,7 @@
 CREATE DATABASE tamandua;
 
+USE tamandua;
+
 -- Tabela de t_status (Estado)
 -- Usada para o login do sistema, para saber se esta ativada ou não.
 
@@ -15,79 +17,83 @@ INSERT INTO `t_status` VALUES ('2','desativo');
 -- Tabela t_tipoFuncionario (Estado)
 -- O sistema tem vários tipos de funcionários, está tabela controla os tipos de funcionários oferecidos pelo sistema
 
-CREATE TABLE `t_tipoFuncionario` (
+CREATE TABLE `t_tipoAcesso` (
   `codigo` smallint,
   `nome` varchar(20) NOT NULL,
   PRIMARY KEY(`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `t_tipoFuncionario` VALUES ('1','gerente');
-INSERT INTO `t_tipoFuncionario` VALUES ('2','funcionario');
-INSERT INTO `t_tipoFuncionario` VALUES ('3','adminsistema');
-
-CREATE TABLE `t_menuFuncionario` (
-  `codigo` int(2) NOT NULL,
-  `nome` varchar(30),
-  `link` varchar(20),
-  `tipoFunc` smallint,
-  PRIMARY KEY (`codigo`),
-  CONSTRAINT menutipoFuncionario_ifk FOREIGN KEY (tipoFunc) REFERENCES t_tipoFuncionario (codigo)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `t_menuFuncionario` VALUES (1, 'Cadastrar Correntista', 'cadCorrentista', 1);
-INSERT INTO `t_menuFuncionario` VALUES (2, 'Cadastrar Correntista', 'cadCorrentista', 2);
-INSERT INTO `t_menuFuncionario` VALUES (3, 'Gerar Conta', 'geraConta', 1);
-INSERT INTO `t_menuFuncionario` VALUES (4, 'Cadastrar Funcionario', 'cadFuncionario', 3);
-INSERT INTO `t_menuFuncionario` VALUES (5, 'Saldo', 'saldo', 1);
-INSERT INTO `t_menuFuncionario` VALUES (6, 'Extrato', 'extrato', 2);
-INSERT INTO `t_menuFuncionario` VALUES (7, 'Saldo', 'saldo', 1);
-INSERT INTO `t_menuFuncionario` VALUES (8, 'Saldo', 'saldo', 2);
-INSERT INTO `t_menuFuncionario` VALUES (9, 'Extrato', 'extrato', 1);
-INSERT INTO `t_menuFuncionario` VALUES (10, 'Extrato', 'extrato', 2);
-INSERT INTO `t_menuFuncionario` VALUES (11, 'Pagamento', 'pagamento', 1);
-INSERT INTO `t_menuFuncionario` VALUES (12, 'Pagamento', 'pagamento', 2);
-INSERT INTO `t_menuFuncionario` VALUES (13, 'Logout', 'Logout', 1);
-INSERT INTO `t_menuFuncionario` VALUES (14, 'Logout', 'Logout', 2);
-INSERT INTO `t_menuFuncionario` VALUES (15, 'Logout', 'Logout', 3);
-
--- Tabela de t_correntista
--- Registro dos correntista
-
-CREATE TABLE `t_correntista` (
-  `cpf` varchar(15) NOT NULL,
-  `endereco` varchar(200) NOT NULL,
-  `telefone` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `t_correntista` VALUES ('111.111.111-11', 'Rua teste', '1212-3434');
-
--- Tabela de t_funcionario
--- Registros dos funcionários do banco
-
-CREATE TABLE `t_funcionario` (
-  `cpf` varchar(15) NOT NULL,
-  `senha` varchar(40) NOT NULL,
-  `tipo` smallint NOT NULL,
-  CONSTRAINT tipofuncionario_ifk FOREIGN KEY (tipo) REFERENCES t_tipoFuncionario (codigo),
-  PRIMARY KEY (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `t_funcionario` VALUES ('321','123',1);
+INSERT INTO `t_tipoAcesso` VALUES ('1','gerente');
+INSERT INTO `t_tipoAcesso` VALUES ('2','funcionario');
+INSERT INTO `t_tipoAcesso` VALUES ('3','adminsistema');
+INSERT INTO `t_tipoAcesso` VALUES ('4','correntista');
 
 -- Tabela t_acesso
 -- Tabela de controle de acesso ao sistema, onde reune os correntistas e funcionários
 
 CREATE TABLE `t_acesso` (
   `cpf` varchar(15) NOT NULL,
-  `nome` varchar(100) NOT NULL,
   `status` smallint,
+  `tipo` smallint,
   PRIMARY KEY(`cpf`),
-  CONSTRAINT statuscesso_ifk FOREIGN KEY (status) REFERENCES t_status (codigo)
+  CONSTRAINT statusacesso_ifk FOREIGN KEY (status) REFERENCES t_status (codigo),
+  CONSTRAINT tipoacesso_ifk FOREIGN KEY (tipo) REFERENCES t_tipoAcesso (codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `t_acesso` VALUES ('321','Jose',1);
-INSERT INTO `t_acesso` VALUES ('111.111.111-11', 'Andre', 1);
+INSERT INTO `t_acesso` VALUES ('321', 1, 3);
+INSERT INTO `t_acesso` VALUES ('111.111.111-11', 1, 4);
+INSERT INTO `t_acesso` VALUES ('345', 1, 3);
+
+CREATE TABLE `t_menuFuncionario` (
+  `codigo` int(2) NOT NULL,
+  `nome` varchar(30),
+  `link` varchar(20),
+  `tipoAcesso` smallint,
+  PRIMARY KEY (`codigo`),
+  CONSTRAINT menutipoAcesso_ifk FOREIGN KEY (tipoAcesso) REFERENCES t_tipoAcesso (codigo)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `t_menuFuncionario` VALUES (1, 'Cadastrar Correntista', 'cadCorrentista', 1);
+INSERT INTO `t_menuFuncionario` VALUES (2, 'Cadastrar Correntista', 'cadCorrentista', 2);
+INSERT INTO `t_menuFuncionario` VALUES (3, 'Gerar Conta', 'geraConta', 1);
+INSERT INTO `t_menuFuncionario` VALUES (4, 'Cadastrar Funcionario', 'funcionario', 3);
+INSERT INTO `t_menuFuncionario` VALUES (5, 'Extrato', 'extrato', 2);
+INSERT INTO `t_menuFuncionario` VALUES (6, 'Saldo', 'saldo', 1);
+INSERT INTO `t_menuFuncionario` VALUES (7, 'Saldo', 'saldo', 2);
+INSERT INTO `t_menuFuncionario` VALUES (8, 'Extrato', 'extrato', 1);
+INSERT INTO `t_menuFuncionario` VALUES (9, 'Extrato', 'extrato', 2);
+INSERT INTO `t_menuFuncionario` VALUES (10, 'Pagamento', 'pagamento', 1);
+INSERT INTO `t_menuFuncionario` VALUES (11, 'Pagamento', 'pagamento', 2);
+INSERT INTO `t_menuFuncionario` VALUES (12, 'Logout', 'logout', 1);
+INSERT INTO `t_menuFuncionario` VALUES (13, 'Logout', 'logout', 2);
+INSERT INTO `t_menuFuncionario` VALUES (14, 'Controle de Acesso', 'ctrAcesso', 3);
+INSERT INTO `t_menuFuncionario` VALUES (15, 'Logout', 'logout', 3);
+
+-- Tabela de t_correntista
+-- Registro dos correntista
+
+CREATE TABLE `t_correntista` (
+  `cpf` varchar(15) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `endereco` varchar(200) NOT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`cpf`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `t_correntista` VALUES ('111.111.111-11', 'Andre', 'Rua teste', '1212-3434');
+
+-- Tabela de t_funcionario
+-- Registros dos funcionários do banco
+
+CREATE TABLE `t_funcionario` (
+  `cpf` varchar(15) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `senha` varchar(40) NOT NULL,
+  PRIMARY KEY (`cpf`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `t_funcionario` VALUES ('321', 'Jose', '123');
+INSERT INTO `t_funcionario` VALUES ('345', 'Andre', '123');
 
 -- Tabela t_conta
 -- Registros de todas as contas do banco
@@ -106,9 +112,7 @@ CREATE TABLE `t_conta` (
 
 INSERT INTO `t_conta` VALUES ('1', '111.111.111-11', 0, '123456', 1);
 
-
 --
-
 -- Tabela t_TipoTransacao (Estado)
 -- Contém os tipos de transacao oferecidos pelo sistema
 

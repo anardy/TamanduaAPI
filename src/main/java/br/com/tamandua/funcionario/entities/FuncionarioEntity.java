@@ -1,4 +1,4 @@
-package br.com.tamandua.autenticacao.entities;
+package br.com.tamandua.funcionario.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,8 +19,8 @@ public class FuncionarioEntity {
 	
 	@Id
 	private String cpf;
+	private String nome;
 	private String senha;
-	private Integer tipo;
 
 	public String getCpf() {
 		return cpf;
@@ -30,19 +30,19 @@ public class FuncionarioEntity {
 		this.cpf = cpf;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
 	}
 }

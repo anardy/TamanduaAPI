@@ -13,10 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.tamandua.autenticacao.entities.FuncionarioEntity;
 import br.com.tamandua.autenticacao.entities.MenuFuncionarioEntity;
 import br.com.tamandua.autenticacao.service.AutenticaoService;
-import br.com.tamandua.transacao.entities.HistTransacaoEntity;
 import br.com.tamandua.transacao.service.TransacaoService;
 
 @Path("/autentica")
@@ -24,6 +22,7 @@ public class AuntenticacaoController {
 
 	@Inject
 	private AutenticaoService autenticaService;
+	
 	@Inject
 	private TransacaoService transacaoService;
 
@@ -41,15 +40,11 @@ public class AuntenticacaoController {
 		if (result.equals("CPF não existe")) {
 			entity.put("tipo", "erro");
 			resp = Response.status(401)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "	POST")
 					.header("Content-type", "application/json").entity(entity)
 					.build();
 		} else {
 			entity.put("tipo", "ok");
 			resp = Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity)
 					.build();
 		}
@@ -72,15 +67,11 @@ public class AuntenticacaoController {
 		if (result.equals("Cliente autenticado")) {
 			entity.put("tipo", "ok");
 			resp = Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity)
 					.build();
 		} else {
 			entity.put("tipo", "erro");
 			resp = Response.status(401)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity)
 					.build();
 		}
@@ -96,22 +87,18 @@ public class AuntenticacaoController {
 		Response resp = null;
 
 		String result = autenticaService.autenticaFuncionario(cpf, senha);
-
+		
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 
 		if (result.equals("Funcionario autenticado")) {
 			entity.put("tipo", "ok");
 			resp = Response.status(200)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity)
 					.build();
 		} else {
 			entity.put("tipo", "erro");
 			resp = Response.status(401)
-					.header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "POST")
 					.header("Content-type", "application/json").entity(entity)
 					.build();
 		}
@@ -125,34 +112,14 @@ public class AuntenticacaoController {
 		List<MenuFuncionarioEntity> lista = autenticaService.montarMenuFuncionario(tipo);
 		Response resp = null;
 		if (lista.size() > 0) {
-			resp = Response.status(200).header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Methods", "GET")
+			resp = Response.status(200)
 				.header("Content-type", "application/json")
 				.entity(lista).build();
 		} else {
-			resp = Response.status(204).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "GET")
+			resp = Response.status(204)
 					.header("Content-type", "application/json").build();
 		}
 		return resp;
 	}
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/funcionarios")
-	public Response todosFuncionarios() {
-		List<FuncionarioEntity> lista = autenticaService.buscarTodosFuncionarios();
-		Response resp = null;
-		if (lista.size() > 0) {
-			resp = Response.status(200).header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Methods", "GET")
-				.header("Content-type", "application/json")
-				.entity(lista).build();
-		} else {
-			resp = Response.status(204).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "GET")
-					.header("Content-type", "application/json").build();
-		}
-		return resp;
-	}
 }

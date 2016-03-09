@@ -13,7 +13,7 @@ public class MenuFuncionarioEntity {
 	private Integer codigo;
 	private String nome;
 	private String link;
-	private Integer tipoFunc;
+	private Integer tipoAcesso;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -38,13 +38,12 @@ public class MenuFuncionarioEntity {
 	public void setLink(String link) {
 		this.link = link;
 	}
-
-	public Integer getTipoFunc() {
-		return tipoFunc;
+	
+	public Integer getTipoAcesso() {
+		return tipoAcesso;
 	}
 
-	public void setTipoFunc(Integer tipoFunc) {
-		this.tipoFunc = tipoFunc;
+	public void setTipoAcesso(Integer tipoAcesso) {
+		this.tipoAcesso = tipoAcesso;
 	}
-
 }

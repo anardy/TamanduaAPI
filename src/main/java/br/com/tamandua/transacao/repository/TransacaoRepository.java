@@ -36,7 +36,7 @@ public class TransacaoRepository {
 		HistTransacaoEntity hist = new HistTransacaoEntity();
 		hist.setCodigotransacao(((TransferenciaEntity) t).getCodigo());
 		hist.setNroconta(((TransferenciaEntity) t).getNroconta_concedente());
-		hist.setTipotransacao(3);
+		hist.setTipotransacao(2);
 		hist.setValor(((TransferenciaEntity) t).getValor());
 		hist.setData(((TransferenciaEntity) t).getData());
 		hist.setFator(1);
@@ -44,7 +44,7 @@ public class TransacaoRepository {
 		HistTransacaoEntity hist2 = new HistTransacaoEntity();
 		hist2.setCodigotransacao(((TransferenciaEntity) t).getCodigo());
 		hist2.setNroconta(((TransferenciaEntity) t).getNroconta_beneficiado());
-		hist2.setTipotransacao(3);
+		hist2.setTipotransacao(2);
 		hist2.setValor(((TransferenciaEntity) t).getValor());
 		hist2.setData(((TransferenciaEntity) t).getData());
 		hist2.setFator(2);

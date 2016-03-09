@@ -1,4 +1,4 @@
-package br.com.tamandua.autenticacao.entities;
+package br.com.tamandua.controleacesso.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,8 +17,8 @@ public class AcessoEntity {
 	
 	@Id
 	private String cpf;
-	private String nome;
 	private Integer status;
+	private Integer tipo;
 
 	public String getCpf() {
 		return cpf;
@@ -28,19 +28,19 @@ public class AcessoEntity {
 		this.cpf = cpf;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public Integer getStatus() {
 		return status;
 	}
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+	
+	public Integer getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
 }
