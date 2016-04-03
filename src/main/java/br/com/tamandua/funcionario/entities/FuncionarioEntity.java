@@ -9,14 +9,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "t_funcionario")
 @NamedQueries({
-	@NamedQuery(name = FuncionarioEntity.BUSCAR_FUNCIONARIO, query = "select c from FuncionarioEntity c where c.cpf = :cpf"),
-	@NamedQuery(name = FuncionarioEntity.BUSCAR_TODOS_FUNCIONARIOS, query = "select c from FuncionarioEntity c"),
-})
+		@NamedQuery(name = FuncionarioEntity.BUSCAR_FUNCIONARIO, query = "select c from FuncionarioEntity c where c.cpf = :cpf"),
+		@NamedQuery(name = FuncionarioEntity.BUSCAR_TODOS_FUNCIONARIOS, query = "select c from FuncionarioEntity c"), })
 public class FuncionarioEntity {
-	
+
+	public FuncionarioEntity() {
+
+	}
+
+	public FuncionarioEntity(String cpf, String nome, String senha) {
+		super();
+		this.cpf = cpf;
+		this.nome = nome;
+		this.senha = senha;
+	}
+
 	public static final String BUSCAR_FUNCIONARIO = "FuncionarioEntity.BuscarFuncionario";
 	public static final String BUSCAR_TODOS_FUNCIONARIOS = "FuncionarioEntity.BuscarTodosFuncionarios";
-	
+
 	@Id
 	private String cpf;
 	private String nome;
@@ -37,7 +47,7 @@ public class FuncionarioEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getSenha() {
 		return senha;
 	}

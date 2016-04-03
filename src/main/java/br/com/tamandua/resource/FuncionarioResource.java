@@ -1,4 +1,4 @@
-package br.com.tamandua.controller;
+package br.com.tamandua.resource;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +18,7 @@ import br.com.tamandua.funcionario.entities.FuncionarioEntity;
 import br.com.tamandua.funcionario.service.FuncionarioService;
 
 @Path("/funcionario")
-public class FuncionarioController {
+public class FuncionarioResource {
 
 	@Inject
 	private FuncionarioService funcionarioService;
@@ -44,8 +44,7 @@ public class FuncionarioController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{cpf}")
 	public Response buscarFuncionario(@PathParam("cpf") String cpf) {
-		List<FuncionarioEntity> lista = funcionarioService
-				.bucarFuncionario(cpf);
+		List<FuncionarioEntity> lista = funcionarioService.buscarFuncionario(cpf);
 		Response resp = null;
 		if (lista.size() > 0) {
 			resp = Response.status(200)
@@ -64,7 +63,13 @@ public class FuncionarioController {
 			@FormParam("nome") String nome, @FormParam("senha") String senha) {
 		Response resp = null;
 
-		String result = funcionarioService.inserirFuncionario(cpf, nome, senha);
+		FuncionarioEntity funcionario = new FuncionarioEntity(cpf, nome, senha);
+		String result = "Funcionario inserido com sucesso";
+		try {
+			funcionarioService.inserirFuncionario(funcionario);
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 
@@ -79,8 +84,13 @@ public class FuncionarioController {
 	public Response editarFuncionario(@FormParam("cpf") String cpf,
 			@FormParam("nome") String nome, @FormParam("senha") String senha) {
 		Response resp = null;
-
-		String result = funcionarioService.editarFuncionario(cpf, nome, senha);
+		FuncionarioEntity funcionario = new FuncionarioEntity(cpf, nome, senha);
+		String result = "Funcionario alterado com sucesso";
+		 try {
+			funcionarioService.editarFuncionario(funcionario);
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 

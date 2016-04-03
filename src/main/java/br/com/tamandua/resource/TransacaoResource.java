@@ -1,4 +1,4 @@
-package br.com.tamandua.controller;
+package br.com.tamandua.resource;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +18,7 @@ import br.com.tamandua.transacao.entities.HistTransacaoEntity;
 import br.com.tamandua.transacao.service.TransacaoService;
 
 @Path("/transacao")
-public class TransacaoController {
+public class TransacaoResource {
 
 	@Inject
 	private TransacaoService transacaoService;
@@ -71,8 +71,8 @@ public class TransacaoController {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/extrato/{nroconta}")
-	public Response extrato(@PathParam("nroconta") Integer nroConta) {
-		List<HistTransacaoEntity> lista = transacaoService.extrairExtrato(nroConta);
+	public Response extrato(@PathParam("nroconta") Integer nroconta) {
+		List<HistTransacaoEntity> lista = transacaoService.consultarExtrato(nroconta);
 		Response resp = null;
 		if (lista.size() > 0) {
 			resp = Response.status(200)
@@ -85,5 +85,38 @@ public class TransacaoController {
 		return resp;
 	}
 	
+	// criar um componente Conta
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/contas")
+	public Response contas() {
+		List<ContaEntity> lista = transacaoService.buscarContas();
+		Response resp = null;
+		if (lista.size() > 0) {
+			resp = Response.status(200)
+				.header("Content-type", "application/json")
+				.entity(lista).build();
+		} else {
+			resp = Response.status(204)
+					.header("Content-type", "application/json").build();
+		}
+		return resp;
+	}
 
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/conta/{nroconta}")
+	public Response conta(@PathParam("nroconta") Integer nroconta) {
+		List<ContaEntity> lista = transacaoService.buscarConta(nroconta);
+		Response resp = null;
+		if (lista.size() > 0) {
+			resp = Response.status(200)
+				.header("Content-type", "application/json")
+				.entity(lista).build();
+		} else {
+			resp = Response.status(204)
+					.header("Content-type", "application/json").build();
+		}
+		return resp;
+	}
 }

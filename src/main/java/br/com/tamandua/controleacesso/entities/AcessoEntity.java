@@ -13,6 +13,16 @@ import javax.persistence.Table;
 })
 public class AcessoEntity {
 	
+	public AcessoEntity() {
+	}
+	
+	public AcessoEntity(String cpf, Integer status, Integer tipo) {
+		super();
+		this.cpf = cpf;
+		this.status = status;
+		this.tipo = tipo;
+	}
+
 	public static final String BUSCAR_ACESSO = "AcessoEntity.BuscarAcesso";
 	
 	@Id

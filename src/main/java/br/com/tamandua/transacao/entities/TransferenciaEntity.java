@@ -18,6 +18,20 @@ public class TransferenciaEntity {
 	private Double valor;
 	private Integer nroconta_concedente;
 	private Integer nroconta_beneficiado;
+	
+	public TransferenciaEntity() {
+		
+	}
+	
+	public TransferenciaEntity(Integer codigo, Timestamp data, Double valor,
+			Integer nroconta_concedente, Integer nroconta_beneficiado) {
+		super();
+		this.codigo = codigo;
+		this.data = data;
+		this.valor = valor;
+		this.nroconta_concedente = nroconta_concedente;
+		this.nroconta_beneficiado = nroconta_beneficiado;
+	}
 
 	public Integer getCodigo() {
 		return codigo;

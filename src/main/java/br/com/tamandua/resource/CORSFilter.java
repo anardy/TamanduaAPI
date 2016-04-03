@@ -1,4 +1,4 @@
-package br.com.tamandua.controller;
+package br.com.tamandua.resource;
 
 import java.io.IOException;
 

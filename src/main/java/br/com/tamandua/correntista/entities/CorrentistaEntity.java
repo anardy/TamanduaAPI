@@ -14,6 +14,18 @@ import javax.persistence.Table;
 })
 public class CorrentistaEntity {
 	
+	public CorrentistaEntity() {
+	}
+	
+	public CorrentistaEntity(String cpf, String nome, String endereco,
+			String telefone) {
+		super();
+		this.cpf = cpf;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.telefone = telefone;
+	}
+	
 	public static final String BUSCAR_CORRENTISTA = "CorrentistaEntity.BuscarCorrentista";
 	public static final String BUSCAR_TODOS_CORRENTISTAS = "CorrentistaEntity.BuscarTodosCorrentistas";
 	

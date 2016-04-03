@@ -12,18 +12,20 @@ import javax.persistence.Transient;
 @Entity
 @Table(name="t_conta")
 @NamedQueries({
-	@NamedQuery(name = ContaEntity.BUSCAR_CONTA, query = "select c from ContaEntity c where c.nroconta = :nroconta")
+	@NamedQuery(name = ContaEntity.BUSCAR_CONTA, query = "select c from ContaEntity c where c.nroconta = :nroconta"),
+	@NamedQuery(name = ContaEntity.BUSCAR_TODAS_CONTA, query = "select c from ContaEntity c")
 })
 public class ContaEntity {
 	
 	public static final String BUSCAR_CONTA = "ContaEntity.BuscarConta";
+	public static final String BUSCAR_TODAS_CONTA = "ContaEntity.BuscarTodasContas";
 	
 	@Id
 	private Integer nroconta;
 	private String correntista;
 	private Double saldo;
 	private String senha;
-	@Transient
+	@Transient // pq tá transient????
 	private Time dataconta;
 	private Integer status;
 

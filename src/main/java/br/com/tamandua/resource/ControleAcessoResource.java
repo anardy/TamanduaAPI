@@ -1,9 +1,9 @@
-package br.com.tamandua.controller;
+package br.com.tamandua.resource;
 
 import java.util.HashMap;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.tamandua.controleacesso.entities.AcessoEntity;
 import br.com.tamandua.controleacesso.entities.ControleAcessoEntity;
 import br.com.tamandua.controleacesso.entities.DesassociarEntity;
 import br.com.tamandua.controleacesso.entities.StatusEntity;
@@ -21,16 +22,16 @@ import br.com.tamandua.controleacesso.entities.TipoAcessoEntity;
 import br.com.tamandua.controleacesso.service.ControleAcessoService;
 
 @Path("/ctracesso")
-public class ControleAcessoController {
-
-	@Inject
+public class ControleAcessoResource {
+	
+	@EJB
 	private ControleAcessoService controleAcessoService;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response todosControleAcesso() {
 		List<ControleAcessoEntity> lista = controleAcessoService
-				.buscaTodosControleAcesso();
+				.buscarControlesAcessos();
 		Response resp = null;
 		if (lista.size() > 0) {
 			resp = Response.status(200)
@@ -48,7 +49,7 @@ public class ControleAcessoController {
 	@Path("{cpf}")
 	public Response controleAcesso(@PathParam("cpf") String cpf) {
 		List<ControleAcessoEntity> lista = controleAcessoService
-				.buscaControleAcesso(cpf);
+				.buscarControleAcesso(cpf);
 		Response resp = null;
 		if (lista.size() > 0) {
 			resp = Response.status(200)
@@ -67,7 +68,13 @@ public class ControleAcessoController {
 			@FormParam("status") Integer status, @FormParam("tipo") Integer tipo) {
 		Response resp = null;
 
-		String result = controleAcessoService.editarAcesso(cpf, status, tipo);
+		AcessoEntity acesso = new AcessoEntity(cpf, status, tipo);
+		String result = "Acesso alterado com sucesso";
+		try {
+			controleAcessoService.editarAcesso(acesso);
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 
@@ -155,7 +162,13 @@ public class ControleAcessoController {
 			@FormParam("status") Integer status, @FormParam("tipo") Integer tipo) {
 		Response resp = null;
 
-		String result = controleAcessoService.inserirAcesso(cpf, status, tipo);
+		AcessoEntity acesso = new AcessoEntity(cpf, status, tipo);
+		String result = "Acesso inserido com sucesso";
+		try {
+			controleAcessoService.inserirAcesso(acesso);
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 

@@ -3,31 +3,30 @@ package br.com.tamandua.autenticacao.service;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import br.com.tamandua.autenticacao.entities.MenuFuncionarioEntity;
-import br.com.tamandua.autenticacao.repository.AutenticacaoRepository;
 import br.com.tamandua.controleacesso.service.ControleAcessoService;
 import br.com.tamandua.correntista.service.CorrentistaService;
-import br.com.tamandua.funcionario.repository.FuncionarioRepository;
+import br.com.tamandua.funcionario.service.FuncionarioService;
 
-@ApplicationScoped
-public class AutenticacaoServiceImpl implements AutenticaoService {
-
+@Stateless
+public class AutenticacaoService {
+	@PersistenceContext(unitName="tamandua")
+	private EntityManager em;
+	
 	@EJB
-	private AutenticacaoRepository autenticacaoRepository;
-
-	@EJB
-	private FuncionarioRepository funcionarioRepository;
-
-	@Inject
 	private ControleAcessoService controleAcessoService;
 	
-	@Inject
+	@EJB
+	private FuncionarioService funcionarioService;
+	
+	@EJB
 	private CorrentistaService correntistaService;
-
-	@Override
+	
 	public boolean validaCpf(String cpf) {
 		return (controleAcessoService.buscarAcesso(cpf).size() > 0) ? true
 				: false;
@@ -39,7 +38,7 @@ public class AutenticacaoServiceImpl implements AutenticaoService {
 	}
 
 	public String validaFuncionario(String cpf) {
-		return (funcionarioRepository.buscarFuncionario(cpf).size() > 0) ? converteTipoFuncionario(controleAcessoService
+		return (funcionarioService.buscarFuncionario(cpf).size() > 0) ? converteTipoFuncionario(controleAcessoService
 				.buscarAcesso(cpf).get(0).getTipo())
 				: "Não encontrou o funcionario";
 	}
@@ -62,7 +61,6 @@ public class AutenticacaoServiceImpl implements AutenticaoService {
 		return tipo;
 	}
 
-	@Override
 	public String tipoAcesso(String cpf) {
 		String result = "";
 		if (validaCorrentista(cpf)) {
@@ -77,13 +75,16 @@ public class AutenticacaoServiceImpl implements AutenticaoService {
 		return result;
 	}
 
-	@Override
 	public String autenticaFuncionario(String cpf, String senha) {
-		return (funcionarioRepository.buscarFuncionario(cpf).get(0).getSenha()
+		return (funcionarioService.buscarFuncionario(cpf).get(0).getSenha()
 				.equals(senha) ? "Funcionario autenticado" : "Dados inválidos");
 	}
-
-	public List<MenuFuncionarioEntity> montarMenuFuncionario(String tipo) {
-		return autenticacaoRepository.buscarMenuFuncionario(tipo);
+	
+	public List<MenuFuncionarioEntity> buscarMenuFuncionario(String tipo) {
+		String select = "select mf.codigo, mf.nome, mf.link, mf.tipoAcesso from t_tipoAcesso tf, t_menuFuncionario mf where tf.codigo = mf.tipoAcesso and tf.nome = :tipo";
+		Query query = em.createNativeQuery(select, MenuFuncionarioEntity.class);
+		query.setParameter("tipo", tipo);
+		return query.getResultList();
 	}
+
 }

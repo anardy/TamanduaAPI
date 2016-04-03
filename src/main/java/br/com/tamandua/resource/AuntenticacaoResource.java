@@ -1,8 +1,9 @@
-package br.com.tamandua.controller;
+package br.com.tamandua.resource;
 
 import java.util.HashMap;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -14,14 +15,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.tamandua.autenticacao.entities.MenuFuncionarioEntity;
-import br.com.tamandua.autenticacao.service.AutenticaoService;
+import br.com.tamandua.autenticacao.service.AutenticacaoService;
 import br.com.tamandua.transacao.service.TransacaoService;
 
 @Path("/autentica")
-public class AuntenticacaoController {
+public class AuntenticacaoResource {
 
-	@Inject
-	private AutenticaoService autenticaService;
+	@EJB
+	private AutenticacaoService autenticaoService;
 	
 	@Inject
 	private TransacaoService transacaoService;
@@ -32,7 +33,7 @@ public class AuntenticacaoController {
 
 		Response resp = null;
 
-		String result = autenticaService.tipoAcesso(cpf);
+		String result = autenticaoService.tipoAcesso(cpf);
 
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
@@ -86,7 +87,7 @@ public class AuntenticacaoController {
 
 		Response resp = null;
 
-		String result = autenticaService.autenticaFuncionario(cpf, senha);
+		String result = autenticaoService.autenticaFuncionario(cpf, senha);
 		
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
@@ -109,7 +110,7 @@ public class AuntenticacaoController {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/menuFuncionario/{tipo}")
 	public Response menuFuncionario(@PathParam("tipo") String tipo) {
-		List<MenuFuncionarioEntity> lista = autenticaService.montarMenuFuncionario(tipo);
+		List<MenuFuncionarioEntity> lista = autenticaoService.buscarMenuFuncionario(tipo);
 		Response resp = null;
 		if (lista.size() > 0) {
 			resp = Response.status(200)

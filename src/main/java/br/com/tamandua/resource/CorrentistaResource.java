@@ -1,9 +1,9 @@
-package br.com.tamandua.controller;
+package br.com.tamandua.resource;
 
 import java.util.HashMap;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,8 +18,9 @@ import br.com.tamandua.correntista.entities.CorrentistaEntity;
 import br.com.tamandua.correntista.service.CorrentistaService;
 
 @Path("/correntista")
-public class CorrentistaController {
-	@Inject
+public class CorrentistaResource {
+	
+	@EJB
 	private CorrentistaService correntistaService;
 
 	@GET
@@ -65,8 +66,13 @@ public class CorrentistaController {
 			@FormParam("telefone") String telefone) {
 		Response resp = null;
 
-		String result = correntistaService.inserirCorrentista(cpf, nome,
-				endereco, telefone);
+		CorrentistaEntity correntista = new CorrentistaEntity(cpf, nome, endereco, telefone);
+		String result = "Correntista inserido com sucesso";
+		try {
+			correntistaService.inserirCorrentista(correntista);
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 
@@ -84,8 +90,13 @@ public class CorrentistaController {
 			@FormParam("telefone") String telefone) {
 		Response resp = null;
 
-		String result = correntistaService.editarCorrentista(cpf, nome,
-				endereco, telefone);
+		CorrentistaEntity correntista = new CorrentistaEntity(cpf, nome, endereco, telefone);
+		String result = "Correntista Alterado com sucesso";
+		try {
+			correntistaService.editarCorrentista(correntista);
+		} catch (Exception e) {
+			result = e.getMessage();
+		}
 		HashMap<String, String> entity = new HashMap<String, String>();
 		entity.put("msg", result);
 
