@@ -1,13 +1,8 @@
 # TamanduaWS
 
-Web Service do Projeto Tamandua (https://github.com/anardy/Tamandua)
+API do Projeto Tamandua (https://github.com/anardy/Tamandua)
 
-# Próxima Versão
-
-- Hibernate
-- Passar para o Maven
-
-# Requisitos para execução do Projeto
+# Requisitos para execuÃ§Ã£o do Projeto
 
 * [WildFly](http://wildfly.org/)
 * [MySQL](http://www.mysql.com/-mysql)
@@ -45,7 +40,3 @@ Obs: Caso rode no Windows use duas barras `SeuCaminho\\tamandua.log`
 # Configurando o WildFly
 
 1. DataSource
-
-# Web Container
-
-Com o `.war` faça o deploy
