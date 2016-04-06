@@ -3,7 +3,7 @@ package br.com.tamandua.resource;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,7 +20,7 @@ import br.com.tamandua.correntista.service.CorrentistaService;
 @Path("/correntista")
 public class CorrentistaResource {
 	
-	@EJB
+	@Inject
 	private CorrentistaService correntistaService;
 
 	@GET

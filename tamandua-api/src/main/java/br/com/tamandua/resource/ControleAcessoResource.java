@@ -3,7 +3,7 @@ package br.com.tamandua.resource;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,7 +24,7 @@ import br.com.tamandua.controleacesso.service.ControleAcessoService;
 @Path("/ctracesso")
 public class ControleAcessoResource {
 	
-	@EJB
+	@Inject
 	private ControleAcessoService controleAcessoService;
 
 	@GET
