@@ -2,21 +2,21 @@
 
 API do Projeto Tamanduá
 
-O Projeto Tamandua é um trabalho de faculdade. O principal objetivo de utilizar o trabalho como ideia é de realizar estudos em diversas tecnologias. Como resultados desses estudos este é uma API construída em Java.
+O Projeto Tamanduá é um trabalho de faculdade. O principal objetivo de utilizar o trabalho é de realizar estudos em diversas tecnologias. Como resultados desses estudos este é uma API construída em Java.
 
-Como o projeto foi dividido em duas partes o back-end([TamanudaAPI](https://github.com/anardy/TamanduaAPI)) e o front-end([Tamandua](https://github.com/anardy/Tamandua)), deu a liberdade de contruir a API em diversas tecnologias. Portanto, o próximo passo é desenvolver a API em NodeJS.
+Como o projeto foi dividido em duas partes o back-end([TamanudaAPI](https://github.com/anardy/TamanduaAPI)) e o front-end([Tamandua](https://github.com/anardy/Tamandua)), deu a liberdade de construir a API em diversas tecnologias. Portanto, o próximo passo é desenvolver a API em NodeJS.
 
 Futuramente, a API também será desenvolvida em outras tecnologias como: Ruby, Python e .NET.
 
 # Próximo passo do Projeto
 
-Contrução de um container no Docker com o ambiente todo configurado. Enquanto este container não é criado, por favor siga os passos abaixos para rodar a aplicação.
+Construção de um container no Docker com o ambiente todo configurado. Enquanto este container não é criado, por favor siga os passos abaixos para rodar a aplicação.
 
 Escrever os testes unitários.
 
-# Arquitura
+# Arquitetura
 
-O principal objetivo da arquitura da aplicação é não utilizar nenhum framework externo a especificação do Java Enterprise Edition. Segue abaixo a lista com todas as especificações utilizadas para desenvolver a API da aplicação [TamanduaAPI]().
+O principal objetivo da arquitetura da aplicação é não utilizar nenhum framework externo a especificação do Java Enterprise Edition. Segue abaixo a lista com todas as especificações utilizadas para desenvolver a API.
 
 * JEE v7
 * JPA
