@@ -1,4 +1,4 @@
-package br.com.tamandua.transacao.service;
+package br.com.tamandua.conta.service;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -8,12 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import br.com.tamandua.transacao.entities.ContaEntity;
-import br.com.tamandua.transacao.entities.HistTransacaoEntity;
-import br.com.tamandua.transacao.entities.TransferenciaEntity;
+import br.com.tamandua.conta.entities.ContaEntity;
+import br.com.tamandua.conta.entities.HistTransacaoEntity;
+import br.com.tamandua.conta.entities.TransferenciaEntity;
 
 @Stateless
-public class TransacaoService {
+public class ContaService {
 	@PersistenceContext(unitName = "tamandua")
 	private EntityManager em;
 

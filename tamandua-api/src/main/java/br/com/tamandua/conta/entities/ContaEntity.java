@@ -1,4 +1,4 @@
-package br.com.tamandua.transacao.entities;
+package br.com.tamandua.conta.entities;
 
 import java.sql.Time;
 

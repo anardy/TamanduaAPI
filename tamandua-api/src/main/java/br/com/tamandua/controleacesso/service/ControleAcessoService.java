@@ -17,7 +17,7 @@ import br.com.tamandua.controleacesso.entities.TipoAcessoEntity;
 @Stateless
 public class ControleAcessoService {
 	@PersistenceContext(unitName="tamandua")
-	EntityManager em;
+	private EntityManager em;
 
 	public List<ControleAcessoEntity> buscarControlesAcessos() {
 		String select = "select a.cpf, f.nome as nomeFuncionario, a.status, a.tipo, ta.nome nomeTipo, s.status as nomeStatus "

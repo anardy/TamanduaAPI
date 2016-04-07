@@ -13,15 +13,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.tamandua.transacao.entities.ContaEntity;
-import br.com.tamandua.transacao.entities.HistTransacaoEntity;
-import br.com.tamandua.transacao.service.TransacaoService;
+import br.com.tamandua.conta.entities.ContaEntity;
+import br.com.tamandua.conta.entities.HistTransacaoEntity;
+import br.com.tamandua.conta.service.ContaService;
 
-@Path("/transacao")
-public class TransacaoResource {
+@Path("/conta")
+public class ContaResource {
 
 	@Inject
-	private TransacaoService transacaoService;
+	private ContaService transacaoService;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -85,10 +85,8 @@ public class TransacaoResource {
 		return resp;
 	}
 	
-	// criar um componente Conta
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/contas")
 	public Response contas() {
 		List<ContaEntity> lista = transacaoService.buscarContas();
 		Response resp = null;
@@ -105,7 +103,7 @@ public class TransacaoResource {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/conta/{nroconta}")
+	@Path("{nroconta}")
 	public Response conta(@PathParam("nroconta") Integer nroconta) {
 		List<ContaEntity> lista = transacaoService.buscarConta(nroconta);
 		Response resp = null;

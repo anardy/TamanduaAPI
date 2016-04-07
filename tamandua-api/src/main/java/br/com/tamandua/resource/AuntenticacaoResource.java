@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.tamandua.autenticacao.entities.MenuFuncionarioEntity;
 import br.com.tamandua.autenticacao.service.AutenticacaoService;
-import br.com.tamandua.transacao.service.TransacaoService;
+import br.com.tamandua.conta.service.ContaService;
 
 @Path("/autentica")
 public class AuntenticacaoResource {
@@ -24,7 +24,7 @@ public class AuntenticacaoResource {
 	private AutenticacaoService autenticaoService;
 	
 	@Inject
-	private TransacaoService transacaoService;
+	private ContaService transacaoService;
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
